@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+
+    <title>Character Creator</title>
+  </head>
+  <body>
+    <nav id="navbar-example2" class="navbar sticky-top navbar-light bg-light px-3">
+      <a class="navbar-brand" href="">Character Creator</a>
+      <ul class="nav nav-pills">
+        <li id="link1" class="nav-item">
+          <a class="nav-link" href="#">Physical Characteristics</a>
+        </li>
+        <li id="link2" class="nav-item">
+          <a class="nav-link" href="#">Personality</a>
+        </li>
+        <li id="link3" class="nav-item">
+          <a class="nav-link" href="#">Flaws</a>
+        </li>
+        <li id="link4" class="nav-item">
+          <a class="nav-link" href="#">DNA & Skills</a>
+        </li>
+        <li id="link5" class="nav-item">
+          <a class="nav-link" href="#">Action Abilities</a>
+        </li>
+        <li id="link6" class="nav-item">
+          <a class="nav-link" href="#">Motives</a>
+        </li>
+        <li id="link7" class="nav-item">
+          <a class="nav-link" href="#">Bio & Items</a>
+        </li>
+        <li id="link8" class="nav-item">
+          <a class="nav-link" href="#">MCS</a>
+        </li>
+        <!-- <li id="linkPrev" class="nav-item"> -->
+          <!-- <a class="nav-link" href="#">Previous</a> -->
+        <!-- </li> -->
+        <!-- <li id="linkNext" class="nav-item"> -->
+          <!-- <a class="nav-link" href="#">Next</a> -->
+        <!-- </li> -->
+      </ul>
+    </nav>
+
+    <div class="container-fluid">
+      <!-- <div class="container mb-3 p-0"> -->
+        <!-- <h4>Points: <span id="currentPoints">0</span>/150</h4> -->
+      <!-- </div> -->
+      <div class="page-top-container">
+        <div class="row g-0 page-container">
+          <div class="col customization-page">
+            <div id="row1" class="customization-container container">
+              <h3>Physical Characteristics</h3>
+              <p>This section helps to describe the look and feel of your character making it easier for you and other players visualise what you look like.  Type in your character name by replacing "Character Name". Then select from drop down menus the words that best describe each category.</p>
+              <form>
+                <div class="mb-3">
+                  <label for="charName" class="form-label">Character Name</label>
+                  <input id="charName" type="text" class="form-control tracked-data" data-sdtarget="CharName">
+                </div>
+                <div class="mb-3">
+                  <label for="species" class="form-label">Species</label>
+                  <select id="species" class="form-select tracked-data" aria-label="Species" data-sdtarget="CharSpecies"></select>
+                </div>
+                <div class="mb-3">
+                  <label for="charAge" class="form-label">Age</label>
+                  <select id="charAge" class="form-select tracked-data" aria-label="Age" data-sdtarget="CharAge"></select>
+                </div>
+                <div class="mb-3">
+                  <label for="gender" class="form-label">Gender</label>
+                  <select id="gender" class="form-select tracked-data" aria-label="Gender" data-sdtarget="CharGender"></select>
+                </div>
+                <div class="mb-3">
+                  <label for="hairColor" class="form-label">Hair Color</label>
+                  <select id="hairColor" class="form-select tracked-data" aria-label="Hair Color" data-sdtarget="CharHairColour"></select>
+                </div>
+                <div class="mb-3">
+                  <label for="eyeColor" class="form-label">Eye Color</label>
+                  <select id="eyeColor" class="form-select tracked-data" aria-label="Eye Color" data-sdtarget="CharEyeColour"></select>
+                </div>
+                <div class="mb-3">
+                  <label for="height" class="form-label">Height</label>
+                  <select id="height" class="form-select tracked-data" aria-label="Height" data-sdtarget="CharHeight"></select>
+                </div>
+                <div class="mb-3">
+                  <label for="build" class="form-label">Build</label>
+                  <select id="build" class="form-select tracked-data" aria-label="Build" aria-describedby="buildHelp" data-sdtarget="CharBuild"></select>
+                  <div id="buildHelp" class="form-text">Ectomorph: Narrow, Mesomorph: Wide, Endomorph: Round</div>
+                </div>
+                <div class="mb-3">
+                  <label for="wealth" class="form-label">Wealth</label>
+                  <select id="wealth" class="form-select tracked-data" aria-label="Wealth" data-sdtarget="CharWealth"></select>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col customization-page">
+            <div id="row2" class="customization-container container">
+              <h3>Personality</h3>
+              <p>This section is used to describe how your character acts, what choices they would make and how they would feel in different situations. For more detailed information, please see the Personality Traits sheet. First select each one of your personality traits. Then select your passive abilities. Finally, write in Character traits that fit both your character and their personality trait.</p>
+              <form id="personalityForm">
+              </form>
+            </div>
+          </div>
+          <div class="col customization-page">
+            <div id="row3" class="customization-container container">
+              <h3>Flaws</h3>
+              <p>This section describes flawed aspects of your character. For every Affliction you take, input -10 for points for minor, -20 for major and -30 for fatal and select the effect that affliction has on your character.</p>
+              <div id="flawList" class="mb-3"></div>
+              <form id="flawsForm" onsubmit="return false">
+                <div class="mb-3">
+                  <label for="flawName" class="form-label">Name</label>
+                  <input id="flawName" type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="flawCategory" class="form-label">Category</label>
+                  <select id="flawCategory" class="form-select" aria-label="Category"></select>
+                </div>
+                <div class="mb-3">
+                  <label for="flawDna" class="form-label">DNA Affected</label>
+                  <select id="flawDna" class="form-select" aria-label="DNA Affected"></select>
+                </div>
+                <div class="mb-3">
+                  <label for="flawIntensity" class="form-label">Intentisty</label>
+                  <select id="flawIntensity" class="form-select" aria-label="Intentisty"></select>
+                </div>
+                <div class="mb-3">
+                  <label for="flawEffect" class="form-label">Effect</label>
+                  <select id="flawEffect" class="form-select" aria-label="Effect"></select>
+                </div>
+                <div class="mb-3">
+                  <button id="addFlawButton" class="btn btn-danger">Add Flaw</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col customization-page">
+            <div id="row4" class="customization-container container">
+              <h3>DNA & Skills</h3>
+              <p>This section describes your balance between the 3 conflict states as well as lists all the skills you have. Be sure to keep your DNA balanced! Any change in one section has to result in an equal change in another.  You'll know you're balanced if the DNA Balance is 0. If i'ts negative one ore more of your DNA traits are too low. If it's positive then one or more of your DNA traits are too high.  For more detailed information please see the Skills & Abilities sheet.</p>
+              <div id="flawList" class="mb-3"></div>
+              <form onsubmit="return false">
+                <div class="mb-3">
+                  <label class="form-label">DNA Balance: <span id="dnaBalance">0</span></label>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-sm-4">
+                    <label for="phsicalityRange" class="form-label">Physicality <span id="phsicalityRangeVal">0</span></label>
+                    <input id="phsicalityRange" type="range" class="dnaRange form-range" min="-2" max="2" step="1">
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="emoFortidueRange" class="form-label">Emotional Fortitude <span id="emoFortidueRangeVal">0</span></label>
+                    <input id="emoFortidueRange" type="range" class="dnaRange form-range" min="-2" max="2" step="1">
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="intellectRange" class="form-label">Intellect <span id="intellectRangeVal">0</span></label>
+                    <input id="intellectRange" type="range" class="dnaRange form-range" min="-2" max="2" step="1">
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Physicality Skills</label>
+                  <hr class="m-0" />
+                </div>
+                <div id="physSkills" class="row mb-3"></div>
+                <div class="mb-3">
+                  <label class="form-label">Emotional Fortitude Skills</label>
+                  <hr class="m-0" />
+                </div>
+                <div id="emoSkills" class="row mb-3"></div>
+                <div class="mb-3">
+                  <label class="form-label">Intellect Skills</label>
+                  <hr class="m-0" />
+                </div>
+                <div id="intSkills" class="row mb-3"></div>
+                <div class="row mb-3">
+                  <div class="col-sm-4">
+                    <label for="dnaType" class="form-label">DNA</label>
+                    <select id="dnaType" class="form-select" aria-label="DNA">
+                      <option value="0">Physicality</option>
+                      <option value="1">Emotional Fortitude</option>
+                      <option value="2">Intellect</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="dnaSkillLevel" class="form-label">Level</label>
+                    <select id="dnaSkillLevel" class="form-select" aria-label="Level">
+                      <option>Average</option>
+                      <option>Talented</option>
+                      <option>Elite</option>
+                      <option>Super</option>
+                      <option>Incredible</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="dnaSkill" class="form-label">Skill</label>
+                    <select id="dnaSkill" class="form-select" aria-label="Skill"></select>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <button id="addSkillButton" class="btn btn-danger">Add Skill</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col customization-page">
+            <div id="row5" class="customization-container container">
+              <h3>Action Abilities</h3>
+              <p>This section lists all your action abilities by conflict state. For more detailed information please see the Skills & Abilities sheet such as descriptions of the actions as well as their prerequisites.</p>
+              <div class="mb-3">
+                <label class="form-label">Selected Abilities</label>
+                <hr class="m-0" />
+              </div>
+              <div id="selectedAbilities" class="row mb-3"></div>
+              <div class="mb-3">
+                <label class="form-label">
+                  Physicality Abilities
+                  <button class="btn btn-sm btn-light expand-abilities-button" onclick="toggle('#physAbilityOptions')"><i class="bi-chevron-bar-expand"></i></button>
+                </label>
+                <hr class="m-0" />
+              </div>
+              <div id="physAbilityOptions" class="row mb-3 ability-options"></div>
+              <div class="mb-3">
+                <label class="form-label">
+                  Emotional Fortitude Abilities
+                  <button class="btn btn-sm btn-light expand-abilities-button" onclick="toggle('#emoAbilityOptions')"><i class="bi-chevron-bar-expand"></i></button>
+                </label>
+                <hr class="m-0" />
+              </div>
+              <div id="emoAbilityOptions" class="row mb-3 ability-options"></div>
+              <div class="mb-3">
+                <label class="form-label">
+                  Intellect Abilities
+                  <button class="btn btn-sm btn-light expand-abilities-button" onclick="toggle('#intAbilityOptions')"><i class="bi-chevron-bar-expand"></i></button>
+                </label>
+                <hr class="m-0" />
+              </div>
+              <div id="intAbilityOptions" class="row mb-3 ability-options"></div>
+            </div>
+          </div>
+          <div class="col customization-page">
+            <div id="row6" class="customization-container container">
+              <h3>Motives</h3>
+              <p>This section describes motives of of your character</p>
+              <div class="mb-3">
+                <label for="motiveType" class="form-label">Motivation Type</label>
+                <select id="motiveType" class="form-select tracked-data" aria-label="Motivation Type" data-sdtarget="MotiveType"></select>
+              </div>
+              <div class="mb-3">
+                <label for="motiveDesc" class="form-label">Description</label>
+                <textarea id="motiveDesc" class="form-control tracked-data" aria-label="Description" data-sdtarget="MotiveDesc"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="motiveRes" class="form-label">Resolution</label>
+                <textarea id="motiveRes" class="form-control tracked-data" aria-label="Resolution" data-sdtarget="MotiveRes"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="col customization-page">
+            <div id="row7" class="customization-container container">
+              <h3>Bio & Items</h3>
+              <p>Tell us more about your character</p>
+              <div class="mb-3">
+                <label for="charBio" class="form-label">Bio</label>
+                <textarea id="charBio" class="form-control tracked-data" aria-label="Bio" data-sdtarget="CharBio"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="charExtBio" class="form-label">Extended Bio</label>
+                <textarea id="charExtBio" class="form-control tracked-data" aria-label="Extended Bio" data-sdtarget="CharExtBio"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="col customization-page">
+            <div id="row8" class="customization-container container">
+              <h3 id="mcsName"></h3>
+              <div class="row mb-3">
+                <div class="col-sm-6 col-md-4 col-lg-auto">
+                  <img src="portrait.jpg" class="img-thumbnail" alt="">
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg">
+                  <p id="mcsBio"></p>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg">
+                  <label class="form-label">Description</label>
+                  <hr class="m-0">
+                  <div class="row"><div class="col"><span class="text-secondary">Wealth: </span><span id="mcsWealth"></span></div></div>
+                  <div class="row"><div class="col"><span class="text-secondary">Age: </span><span id="mcsAge"></span></div></div>
+                  <div class="row"><div class="col"><span class="text-secondary">Hair Color: </span><span id="mcsHair"></span></div></div>
+                  <div class="row"><div class="col"><span class="text-secondary">Height: </span><span id="mcsHeight"></span></div></div>
+                  <div class="row"><div class="col"><span class="text-secondary">Species: </span><span id="mcsSpecies"></span></div></div>
+                  <div class="row"><div class="col"><span class="text-secondary">Gender: </span><span id="mcsGender"></span></div></div>
+                  <div class="row"><div class="col"><span class="text-secondary">Eye Color: </span><span id="mcsEye"></span></div></div>
+                  <div class="row"><div class="col"><span class="text-secondary">Build: </span><span id="mcsBuild"></span></div></div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg">
+                  <label class="form-label">Character Traits</label>
+                  <hr class="m-0">
+                  <div id="mcsCharTraits"></div>
+                </div>
+              </div>
+              <h4>Personality & Passive Abilities</h4>
+              <div id="mcsPers" class="row row-cols-5 mb-3"></div>
+              <h4>Character Flaws</h4>
+              <div id="mcsFlaws" class="mb-3"></div>
+              <h4>DNA & Skills</h4>
+              <h5>Skills</h5>
+              <div class="row row-cols-3 mb-3">
+                <div class="col-12 col-sm">
+                  <h5>Progressive <small id="mcsProgBalance" class="text-secondary"></small></h5>
+                  <hr class="m-0" />
+                  <div id="mcsProgSkills"></div>
+                </div>
+                <div class="col-12 col-sm">
+                  <h5>Sensitive <small id="mcsSenBalance" class="text-secondary"></small></h5>
+                  <hr class="m-0" />
+                  <div id="mcsSenSkills"></div>
+                </div>
+                <div class="col-12 col-sm">
+                  <h5>Introvert <small id="mcsIntBalance" class="text-secondary"></small></h5>
+                  <hr class="m-0" />
+                  <div id="mcsIntSkills"></div>
+                </div>
+              </div>
+              <h5>Action Abilities</h5>
+              <div class="row row-cols-3 mb-3">
+                <div class="col-12 col-sm">
+                  <h5>Progressive</h5>
+                  <hr class="m-0" />
+                  <div id="mcsProgAbilities"></div>
+                </div>
+                <div class="col-12 col-sm">
+                  <h5>Sensitive</h5>
+                  <hr class="m-0" />
+                  <div id="mcsSenAbilities"></div>
+                </div>
+                <div class="col-12 col-sm">
+                  <h5>Introvert</h5>
+                  <hr class="m-0" />
+                  <div id="mcsIntAbilities"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="loadingOverlay">
+      <h1>Loading..</h1>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="data.js" ></script>
+    <script src="main.js" ></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+  </body>
+</html>
