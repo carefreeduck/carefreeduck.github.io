@@ -2,10 +2,14 @@ console.log(data);
 
 const passiveAbilityCost = 10;
 
+const curVersion = "v0.1";
+
 const pageCount = 8;
 let currentPage = 1;
 
 let trackedData = {
+  "Version": curVersion,
+  "CharImgUrl": "",
   "CharName": "",
   "CharSpecies": 0,
   "CharAge": 0,
@@ -24,10 +28,12 @@ let trackedData = {
   "MotiveDesc": "",
   "MotiveRes": "",
   "CharBio": "",
-  "CharExtBio": ""
+  "CharExtBio": "",
+  "Items": [],
 };
 
 function buildMcs() {
+  $("#mcsImage").html('<img src="' + trackedData.CharImgUrl + '" class="img-thumbnail img-fluid" alt="">');
   $("#mcsName").html(trackedData.CharName);
   $("#mcsBio").html(trackedData.CharBio);
 
@@ -47,6 +53,10 @@ function buildMcs() {
       $("#mcsCharTraits").append('<div class="row"><div class="col">' + data.PersTraits[i].Options[persData.Selected].CharTraits[trait] + '</div></div>');
     }
   }
+
+  $("#mcsMotive").html(data.Motives[trackedData.MotiveType].Motive);
+  $("#mcsMotiveDesc").html(trackedData.MotiveDesc);
+  $("#mcsMotiveRes").html(trackedData.MotiveRes);
 
   $("#mcsPers").html("");
   for (let i = 0; i < trackedData.PersonalityData.length; i++) {
@@ -181,48 +191,66 @@ function buildMcs() {
   else {
     $("#mcsIntAbilities").html('<small class="text-secondary">No Abilities</small>');
   }
+
+  $("#mcsItems").html(trackedData.Items.length > 0 ? "" : "No Items");
+  for (let i = 0; i < trackedData.Items.length; i++) {
+    const item = trackedData.Items[i];
+    let cont = "";
+    cont += '<div class="row mb-2">';
+    cont += '<div class="col-12 col-md-auto">';
+    cont += '<strong>' + item.Name + '</strong>';
+    cont += '</div>';
+    cont += '<div class="col">';
+    cont += '<small class="text-secondary">' + item.Desc + '</small>';
+    cont += '</div>';
+    cont += '</div>';
+    
+    $("#mcsItems").append(cont);
+  }
+}
+
+function fillInitialItems() {
+  $("#charImgUrl").val(trackedData.CharImgUrl);
+  $("#charName").val(trackedData.CharName);
+
+  $("#dnaBalance").html(trackedData.DnaBalance[0] + trackedData.DnaBalance[1] + trackedData.DnaBalance[2]);
+  $("#phsicalityRange").val(trackedData.DnaBalance[0]);
+  $("#phsicalityRangeVal").html(trackedData.DnaBalance[0]);
+  $("#emoFortidueRange").val(trackedData.DnaBalance[1]);
+  $("#emoFortidueRangeVal").html(trackedData.DnaBalance[1]);
+  $("#intellectRange").val(trackedData.DnaBalance[2]);
+  $("#intellectRangeVal").html(trackedData.DnaBalance[2]);
+
+  $("#motiveDesc").val(trackedData.MotiveDesc);
+  $("#motiveRes").val(trackedData.MotiveRes);
+
+  $("#charBio").val(trackedData.CharBio);
+  $("#charExtBio").val(trackedData.CharExtBio);
+}
+
+function placeImage() {
+  $("#imgContainer").html('<img src="' + trackedData.CharImgUrl + '" class="img-thumbnail" alt="">');
+}
+
+function fillCustomization(id, dataId, trackedId) {
+  id = "#" + id;
+  const sel = trackedData[trackedId];
+  $(id).html("");
+  for (let i = 0; i < data.Customization[dataId].length; i++) {
+    const item = data.Customization[dataId][i];
+    $(id).append('<option ' + (sel === i ? "selected" : "") + '>' + item + '</option>');
+  }
 }
 
 function fillCustomizations() {
-  $("#species").html("");
-  for (const item of data.Customization.Species) {
-    $("#species").append('<option>' + item + '</option>');
-  }
-
-  $("#charAge").html("");
-  for (const item of data.Customization.Age) {
-    $("#charAge").append('<option>' + item + '</option>');
-  }
-
-  $("#gender").html("");
-  for (const item of data.Customization.Gender) {
-    $("#gender").append('<option>' + item + '</option>');
-  }
-
-  $("#hairColor").html("");
-  for (const item of data.Customization.HairColor) {
-    $("#hairColor").append('<option>' + item + '</option>');
-  }
-
-  $("#eyeColor").html("");
-  for (const item of data.Customization.EyeColor) {
-    $("#eyeColor").append('<option>' + item + '</option>');
-  }
-
-  $("#height").html("");
-  for (const item of data.Customization.Height) {
-    $("#height").append('<option>' + item + '</option>');
-  }
-
-  $("#build").html("");
-  for (const item of data.Customization.Build) {
-    $("#build").append('<option>' + item + '</option>');
-  }
-
-  $("#wealth").html("");
-  for (const item of data.Customization.Wealth) {
-    $("#wealth").append('<option>' + item + '</option>');
-  }
+  fillCustomization("species", "Species", "CharSpecies");
+  fillCustomization("charAge", "Age", "CharAge");
+  fillCustomization("gender", "Gender", "CharGender");
+  fillCustomization("hairColor", "HairColor", "CharHairColour");
+  fillCustomization("eyeColor", "EyeColor", "CharEyeColour");
+  fillCustomization("height", "Height", "CharHeight");
+  fillCustomization("build", "Build", "CharBuild");
+  fillCustomization("wealth", "Wealth", "CharWealth");
 }
 
 function fillPersonalityTrackedData() {
@@ -233,7 +261,8 @@ function fillPersonalityTrackedData() {
 }
 
 function buildPersonalityControls(container) {
-  for (const persTrait of data.PersTraits) {
+  for (let p = 0; p < data.PersTraits.length; p++) {
+    const persTrait = data.PersTraits[p];
     let traitCont = "";
     traitCont += '<div class="mb-3">';
     traitCont += '<div><label class="form-label help-desc-button" data-target="' + persTrait.Id + 'Desc">' + persTrait.Name + ' <i class="bi-question-octagon-fill"></i></label></div>';
@@ -243,7 +272,7 @@ function buildPersonalityControls(container) {
     
     for (let i = 0; i < persTrait.Options.length; i++) {
       const traitOption = persTrait.Options[i];
-      const checkedText = i == 0 ? "checked" : "";
+      const checkedText = i == trackedData.PersonalityData[p].Selected ? "checked" : "";
       traitCont += '<div class="form-check form-check-inline">';
       traitCont += '<input class="form-check-input ' + persTrait.Id + '-radio" type="radio" name="' + persTrait.Id + 'Options" id="' + traitOption.Id + 'Option" value="' + i + '" ' + checkedText + '>';
       traitCont += '<label class="form-check-label" for="' + traitOption.Id + 'Option">' + traitOption.Name + '</label>';
@@ -254,7 +283,8 @@ function buildPersonalityControls(container) {
 
     for (let i = 0; i < persTrait.Options.length; i++) {
       const traitOption = persTrait.Options[i];
-      const hiddenClass = i == 0 ? "" : "hidden-at-start";
+      const isSelected = i == trackedData.PersonalityData[p].Selected;
+      const hiddenClass = isSelected ? "" : "hidden-at-start";
       traitCont += '<div class="mb-3">';
       traitCont += '<div id="' + traitOption.Id + 'Traits" class="trait-card card ' + hiddenClass + '">';
       traitCont += '<div class="card-body">';
@@ -263,9 +293,10 @@ function buildPersonalityControls(container) {
       
       for (let i = 0; i < traitOption.Abilities.length; i++) {
         const traitAbility = traitOption.Abilities[i];
+        const isSelected = trackedData.PersonalityData[p].Passives.includes(i);
         traitCont += '<div class="row m-0">';
         traitCont += '<div class="col-12 col-md-auto form-check">';
-        traitCont += '<input class="form-check-input" type="checkbox" value="" id="' + traitOption.Id + 'Trait' + i + '" aria-describedby="' + traitOption.Id + 'Trait' + i + 'Help">';
+        traitCont += '<input class="form-check-input" type="checkbox" value="" id="' + traitOption.Id + 'Trait' + i + '" aria-describedby="' + traitOption.Id + 'Trait' + i + 'Help" ' + (isSelected ? "checked" : "") + '>';
         traitCont += '<label class="form-check-label" for="' + traitOption.Id + 'Trait' + i + '">' + traitAbility.Name + '</label>';
         traitCont += '</div>';
         traitCont += '<div id="' + traitOption.Id + 'Trait' + i + 'Help" class="col trait-help">' + traitAbility.Description + '</div>';
@@ -279,8 +310,9 @@ function buildPersonalityControls(container) {
         traitCont += '<div class="g-0">';
         for (let i = 0; i < traitOption.CharTraits.length; i++) {
           const charTrait = traitOption.CharTraits[i];
+          const isSelected = trackedData.PersonalityData[p].CharTraits.includes(i);
           traitCont += '<div class="form-check form-check-inline">';
-          traitCont += '<input class="form-check-input" type="checkbox" id="' + traitOption.Id + 'CharTrait' + i + '">';
+          traitCont += '<input class="form-check-input" type="checkbox" id="' + traitOption.Id + 'CharTrait' + i + '" ' + (isSelected ? "checked" : "") + '>';
           traitCont += '<label class="form-check-label" for="' + traitOption.Id + 'CharTrait' + i + '">' + charTrait + '</label>';
           traitCont += '</div>';
         }
@@ -682,7 +714,7 @@ function fillAbilities() {
       abilityCont += '<button class="btn btn-sm btn-light add-button" ' + (isSatisfied ? "" : "disabled") + ' onclick="addAbility(' + s + ', ' + i + ')"><i class="bi-plus-square"></i></button>';
       abilityCont += ' ' + ability.Name + ' ';
       if (!isSatisfied) {
-        abilityCont += '<small class="text-secondary">Not satisfied</small>';
+        abilityCont += '<small class="text-secondary">Requirements not met</small>';
       }
       abilityCont += '<button class="btn btn-sm btn-light expand-button"><i class="bi-chevron-bar-expand"></i></button>';
       abilityCont += '</h6>';
@@ -749,11 +781,51 @@ function deleteAbility(index) {
 
 function fillMotives() {
   let options = "";
-  for (const motive of data.Motives) {
-    options += '<option>' + motive.Motive + '</option>'
+  for (let i = 0; i < data.Motives.length; i++) {
+    const motive = data.Motives[i];
+    options += '<option ' + (trackedData.MotiveType === i ? "selected" : "") + ' >' + motive.Motive + '</option>'
   }
   
   $("#motiveType").html(options);
+}
+
+function fillItems() {
+  $("#items").html("");
+  if (trackedData.Items.length > 0) {
+    for (let i = 0; i < trackedData.Items.length; i++) {
+      const item = trackedData.Items[i];
+      let cont = "";
+      cont += '<div class="col-sm-6 col-md-4">';
+      cont += '<div class="mt-1 card">';
+      cont += '<div class="card-body p-2">';
+      cont += '<button class="btn btn-sm btn-danger delete-button" onclick="deleteItem(' + i + ')"><i class="bi-trash"></i></button> ';
+      cont += item.Name;
+      cont += '<hr class="m-0">';
+      cont += item.Desc;
+      cont += '</div>';
+      cont += '</div>';
+      cont += '</div>';
+      
+      $("#items").append(cont);
+    }
+  }
+  else {
+    $("#items").html('<small class="text-secondary">No Items</small>');
+  }
+}
+
+function addItem(name, desc) {
+  let items = trackedData.Items;
+  items.push({"Name": name, "Desc": desc});
+  onTrackedDataChange("Items", items);
+  fillItems();
+}
+
+function deleteItem(index) {
+  let items = trackedData.Items;
+  items.splice(index, 1);
+  onTrackedDataChange("Items", items);
+  fillItems();
 }
 
 function showPage(number, onEnd) {
@@ -791,6 +863,8 @@ function showPage(number, onEnd) {
       onEnd();
     }
   });
+  
+  currentPage = number;
 }
 
 function onTraitSelectChanged(selectElement) {
@@ -836,37 +910,127 @@ function calculatePoints() {
   
 }
 
+function setTrackedDataAsCookie() {
+  const value = window.btoa(JSON.stringify(trackedData));
+  document.cookie = "trackedData=" + value;
+}
+
+function getTrackedDataFromCookie() {
+  const ca = document.cookie.split(';');
+  
+  const name = "trackedData=";
+  let value = "";
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    
+    if (c.indexOf(name) == 0) {
+      value = window.atob(c.substring(name.length, c.length));
+      break;
+    }
+  }
+
+  if (value.length > 0) {
+    const cookieData = JSON.parse(value);
+    if (cookieData.Version === curVersion) {
+      trackedData = cookieData;
+      console.log(trackedData);
+    }
+  }
+}
+
+function updateDownloadLink() {
+  const link = document.getElementById("saveChar");
+  const file = new Blob([window.btoa(JSON.stringify(trackedData))], {type: 'text/plain'});
+  link.href = URL.createObjectURL(file);
+  link.download = 'wegorpg_character';
+}
+
+function loadFile() {
+  const selectedFile = document.getElementById("uploadInput").files[0];
+  if (selectedFile && selectedFile.size > 0) {
+    const reader = new FileReader();
+    reader.readAsText(selectedFile, "UTF-8");
+    reader.onload = function (evt) {
+      console.log(evt.target.result);
+      try {
+        const value = window.atob(evt.target.result);
+        const parsedData = JSON.parse(value);
+        if (parsedData.Version === curVersion) {
+          trackedData = parsedData;
+          buildFromData();
+        }
+      }
+      catch(e) {
+        alert("Invalid content");
+      }
+    }
+    reader.onerror = function (evt) {
+      alert("Could not read file");
+    }
+  }
+  else {
+    alert("Invalid or empty file");
+  }
+  
+}
+
 function onTrackedDataChange(key, value) {
   trackedData[key] = value;
   console.log(trackedData);
+  //setTrackedDataAsCookie();
+  updateDownloadLink();
   
   if (key === "PersonalityData") {
     checkSelectedAbilities();
   }
+  else if (key === "CharImgUrl") {
+    placeImage();
+  }
+}
+
+function buildFromData() {
+  fillInitialItems();
+  placeImage();
+
+  fillCustomizations();
+
+  buildPersonalityControls("#personalityForm");
+  bindPersonalityEvents();
+
+  fillFlaws();
+  buildFlawControls();
+  bindFlawEvents();
+
+  fillDnaSkills();
+  bindSkillEvents();
+
+  fillDnaSkillOptions(0);
+  fillSelectedAbilities();
+  fillAbilities();
+  
+  fillMotives();
+
+  fillItems();
+  
+  updateDownloadLink();
+  $('.help-desc-button').click(function() {
+    const id = "#" + $(this).data("target");
+    $(".toggle-desc:not(" + id + ")").hide();
+    $(id).toggle();
+  });
+
+  $("#loadingOverlay").show();
+  showPage(currentPage, function() {
+    console.log("done");
+    $("#loadingOverlay").hide();
+  });
 }
 
 $(document).ready(function() {
   console.log(window.location);
-  const windowHeight = $(window).height();
-  //$(".customization-page").css( "min-height", "" + windowHeight + "px" );
-  
-  fillCustomizations();
-
-  fillPersonalityTrackedData();
-  buildPersonalityControls("#personalityForm");
-  bindPersonalityEvents();
-  
-  buildFlawControls();
-  bindFlawEvents();
-
-  bindSkillEvents();
-
-  var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-  var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-    return new bootstrap.Popover(popoverTriggerEl, {
-      trigger: 'hover focus'
-    });
-  });
 
   for (let i = 1; i <= pageCount; i++) {
     $( "#link" + i ).click(function() {
@@ -874,30 +1038,17 @@ $(document).ready(function() {
     });
   }
 
-  $("#linkPrev").click(function() {
-    showPage(i);
-  });
+  fillPersonalityTrackedData();
+  //getTrackedDataFromCookie();
   
-  showPage(currentPage, function() {
-    console.log("done");
-    $("#loadingOverlay").hide();
-  });
-  
-  $('.trait-select').change(function() {
-    onTraitSelectChanged(this);
-  });
-  
-  $('.help-desc-button').click(function() {
-    const id = "#" + $(this).data("target");
-    $(".toggle-desc:not(" + id + ")").hide();
-    $(id).toggle();
-  });
+  buildFromData();
 
-  fillDnaSkillOptions(0);
-  fillSelectedAbilities();
-  fillAbilities();
-  
-  fillMotives();
+  // var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+  // var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    // return new bootstrap.Popover(popoverTriggerEl, {
+      // trigger: 'hover focus'
+    // });
+  // });
   
   $('.ability-options').toggle();
   
@@ -917,5 +1068,15 @@ $(document).ready(function() {
     const value = $(this).val();
     const key = $(this).data("sdtarget");
     onTrackedDataChange(key, value);
+  });
+
+  $("#addItembutton").click(function() {
+    const name = $("#itemName").val();
+    const desc = $("#itemDesc").val();
+    addItem(name, desc);
+  });
+
+  $("#uploadFile").click(function() {
+    loadFile();
   });
 });

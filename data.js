@@ -605,6 +605,7 @@ const data = {
     ]
   ],
   "Motives": [
+    {"Motive": "CUSTOM", "Link": ""},
     {"Motive": "ACHIEVING DOMINION OVER ANOTHER (DARK)", "Link": ""},
     {"Motive": "ACHIEVING SPIRITUAL ENLIGHTENMENT", "Link": ""},
     {"Motive": "AVOIDING CERTAIN DEATH", "Link": ""},

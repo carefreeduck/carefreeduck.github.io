@@ -60,42 +60,57 @@
               <h3>Physical Characteristics</h3>
               <p>This section helps to describe the look and feel of your character making it easier for you and other players visualise what you look like.  Type in your character name by replacing "Character Name". Then select from drop down menus the words that best describe each category.</p>
               <form>
-                <div class="mb-3">
-                  <label for="charName" class="form-label">Character Name</label>
-                  <input id="charName" type="text" class="form-control tracked-data" data-sdtarget="CharName">
-                </div>
-                <div class="mb-3">
-                  <label for="species" class="form-label">Species</label>
-                  <select id="species" class="form-select tracked-data" aria-label="Species" data-sdtarget="CharSpecies"></select>
-                </div>
-                <div class="mb-3">
-                  <label for="charAge" class="form-label">Age</label>
-                  <select id="charAge" class="form-select tracked-data" aria-label="Age" data-sdtarget="CharAge"></select>
-                </div>
-                <div class="mb-3">
-                  <label for="gender" class="form-label">Gender</label>
-                  <select id="gender" class="form-select tracked-data" aria-label="Gender" data-sdtarget="CharGender"></select>
-                </div>
-                <div class="mb-3">
-                  <label for="hairColor" class="form-label">Hair Color</label>
-                  <select id="hairColor" class="form-select tracked-data" aria-label="Hair Color" data-sdtarget="CharHairColour"></select>
-                </div>
-                <div class="mb-3">
-                  <label for="eyeColor" class="form-label">Eye Color</label>
-                  <select id="eyeColor" class="form-select tracked-data" aria-label="Eye Color" data-sdtarget="CharEyeColour"></select>
-                </div>
-                <div class="mb-3">
-                  <label for="height" class="form-label">Height</label>
-                  <select id="height" class="form-select tracked-data" aria-label="Height" data-sdtarget="CharHeight"></select>
-                </div>
-                <div class="mb-3">
-                  <label for="build" class="form-label">Build</label>
-                  <select id="build" class="form-select tracked-data" aria-label="Build" aria-describedby="buildHelp" data-sdtarget="CharBuild"></select>
-                  <div id="buildHelp" class="form-text">Ectomorph: Narrow, Mesomorph: Wide, Endomorph: Round</div>
-                </div>
-                <div class="mb-3">
-                  <label for="wealth" class="form-label">Wealth</label>
-                  <select id="wealth" class="form-select tracked-data" aria-label="Wealth" data-sdtarget="CharWealth"></select>
+                <div class="row">
+                  <div class="col-sm-6 col-md-4">
+                    <div id="imgContainer"><img src="portrait.jpg" class="img-thumbnail" alt=""></div>
+                    <div class="mb-3">
+                      <label for="charImgUrl" class="form-label">Image URL</label>
+                      <input id="charImgUrl" type="text" class="form-control tracked-data" data-sdtarget="CharImgUrl">
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-8">
+                    <div class="row">
+                      <div class="col-sm-12 col-md-6">
+                        <label for="charName" class="form-label">Character Name</label>
+                        <input id="charName" type="text" class="form-control tracked-data" data-sdtarget="CharName">
+                      </div>
+                      <div class="col-sm-12 col-md-6">
+                        <label for="species" class="form-label">Species</label>
+                        <select id="species" class="form-select tracked-data" aria-label="Species" data-sdtarget="CharSpecies"></select>
+                      </div>
+                      <div class="col-sm-12 col-md-6">
+                        <label for="charAge" class="form-label">Age</label>
+                        <select id="charAge" class="form-select tracked-data" aria-label="Age" data-sdtarget="CharAge"></select>
+                      </div>
+                      <div class="col-sm-12 col-md-6">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select id="gender" class="form-select tracked-data" aria-label="Gender" data-sdtarget="CharGender"></select>
+                      </div>
+                      <div class="col-sm-12 col-md-6">
+                        <label for="hairColor" class="form-label">Hair Color</label>
+                        <select id="hairColor" class="form-select tracked-data" aria-label="Hair Color" data-sdtarget="CharHairColour"></select>
+                      </div>
+                      <div class="col-sm-12 col-md-6">
+                        <label for="eyeColor" class="form-label">Eye Color</label>
+                        <select id="eyeColor" class="form-select tracked-data" aria-label="Eye Color" data-sdtarget="CharEyeColour"></select>
+                      </div>
+                      <div class="col-sm-12 col-md-6">
+                        <label for="height" class="form-label">Height</label>
+                        <select id="height" class="form-select tracked-data" aria-label="Height" data-sdtarget="CharHeight"></select>
+                      </div>
+                      <div class="col-sm-12 col-md-6">
+                        <label for="build" class="form-label">Build</label>
+                        <select id="build" class="form-select tracked-data" aria-label="Build" aria-describedby="buildHelp" data-sdtarget="CharBuild"></select>
+                        <div id="buildHelp" class="form-text">Ectomorph: Narrow, Mesomorph: Wide, Endomorph: Round</div>
+                      </div>
+                      <div class="col-sm-12 col-md-6">
+                        <label for="wealth" class="form-label">Wealth</label>
+                        <select id="wealth" class="form-select tracked-data" aria-label="Wealth" data-sdtarget="CharWealth"></select>
+                      </div>
+                      <div class="col-sm-12 col-md-6">
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>
@@ -127,8 +142,8 @@
                   <select id="flawDna" class="form-select" aria-label="DNA Affected"></select>
                 </div>
                 <div class="mb-3">
-                  <label for="flawIntensity" class="form-label">Intentisty</label>
-                  <select id="flawIntensity" class="form-select" aria-label="Intentisty"></select>
+                  <label for="flawIntensity" class="form-label">Intensity</label>
+                  <select id="flawIntensity" class="form-select" aria-label="Intensity"></select>
                 </div>
                 <div class="mb-3">
                   <label for="flawEffect" class="form-label">Effect</label>
@@ -273,34 +288,71 @@
                 <label for="charExtBio" class="form-label">Extended Bio</label>
                 <textarea id="charExtBio" class="form-control tracked-data" aria-label="Extended Bio" data-sdtarget="CharExtBio"></textarea>
               </div>
+              <h5>Items</h5>
+              <div id="items" class="row mb-3"></div>
+              <div class="row mb-3">
+                <div class="col-sm-12 col-md-4">
+                  <label for="itemName" class="form-label">Name</label>
+                  <input id="itemName" type="text" class="form-control">
+                </div>
+                <div class="col-sm-12 col-md-8">
+                  <label for="itemDesc" class="form-label">Description</label>
+                  <input id="itemDesc" type="text" class="form-control">
+                </div>
+              </div>
+              <div class="mb-3">
+                <button id="addItembutton" class="btn btn-sm btn-success">Add Item</button>
+              </div>
             </div>
           </div>
           <div class="col customization-page">
             <div id="row8" class="customization-container container">
               <h3 id="mcsName"></h3>
               <div class="row mb-3">
-                <div class="col-sm-6 col-md-4 col-lg-auto">
-                  <img src="portrait.jpg" class="img-thumbnail" alt="">
+                <div id="mcsImage" class="col-sm-6 col-md-4">
+                  <!-- <img src="portrait.jpg" class="img-thumbnail" alt=""> -->
+                  <img src="https://i.imgur.com/Xhn4Vty.jpg" class="img-thumbnail img-fluid" alt="">
                 </div>
-                <div class="col-sm-6 col-md-4 col-lg">
-                  <p id="mcsBio"></p>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg">
-                  <label class="form-label">Description</label>
-                  <hr class="m-0">
-                  <div class="row"><div class="col"><span class="text-secondary">Wealth: </span><span id="mcsWealth"></span></div></div>
-                  <div class="row"><div class="col"><span class="text-secondary">Age: </span><span id="mcsAge"></span></div></div>
-                  <div class="row"><div class="col"><span class="text-secondary">Hair Color: </span><span id="mcsHair"></span></div></div>
-                  <div class="row"><div class="col"><span class="text-secondary">Height: </span><span id="mcsHeight"></span></div></div>
-                  <div class="row"><div class="col"><span class="text-secondary">Species: </span><span id="mcsSpecies"></span></div></div>
-                  <div class="row"><div class="col"><span class="text-secondary">Gender: </span><span id="mcsGender"></span></div></div>
-                  <div class="row"><div class="col"><span class="text-secondary">Eye Color: </span><span id="mcsEye"></span></div></div>
-                  <div class="row"><div class="col"><span class="text-secondary">Build: </span><span id="mcsBuild"></span></div></div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg">
-                  <label class="form-label">Character Traits</label>
-                  <hr class="m-0">
-                  <div id="mcsCharTraits"></div>
+                <div class="col-sm-6 col-md-8">
+                  <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                      <p id="mcsBio"></p>
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-lg">
+                      <label class="form-label">Description</label>
+                      <hr class="m-0">
+                      <div class="row"><div class="col"><span class="text-secondary">Wealth: </span><span id="mcsWealth"></span></div></div>
+                      <div class="row"><div class="col"><span class="text-secondary">Age: </span><span id="mcsAge"></span></div></div>
+                      <div class="row"><div class="col"><span class="text-secondary">Hair Color: </span><span id="mcsHair"></span></div></div>
+                      <div class="row"><div class="col"><span class="text-secondary">Height: </span><span id="mcsHeight"></span></div></div>
+                      <div class="row"><div class="col"><span class="text-secondary">Species: </span><span id="mcsSpecies"></span></div></div>
+                      <div class="row"><div class="col"><span class="text-secondary">Gender: </span><span id="mcsGender"></span></div></div>
+                      <div class="row"><div class="col"><span class="text-secondary">Eye Color: </span><span id="mcsEye"></span></div></div>
+                      <div class="row"><div class="col"><span class="text-secondary">Build: </span><span id="mcsBuild"></span></div></div>
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-lg">
+                      <label class="form-label">Character Traits</label>
+                      <hr class="m-0">
+                      <div id="mcsCharTraits"></div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <hr class="m-0" />
+                      <div class="row">
+                        <div class="col-12 col-md-3 col-lg-2">Motive</div>
+                        <div class="col"><small id="mcsMotive" class="text-secondary"></small></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-md-3 col-lg-2">Description</div>
+                        <div class="col"><small id="mcsMotiveDesc" class="text-secondary"></small></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-md-3 col-lg-2">Resolution</div>
+                        <div class="col"><small id="mcsMotiveRes" class="text-secondary"></small></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <h4>Personality & Passive Abilities</h4>
@@ -342,6 +394,20 @@
                   <h5>Introvert</h5>
                   <hr class="m-0" />
                   <div id="mcsIntAbilities"></div>
+                </div>
+              </div>
+              <h4>Items</h4>
+              <div id="mcsItems" class="mb-3"></div>
+              <h4>Save & Load</h4>
+              <div class="row mb-3">
+                <div class="col-sm-12 col-md">
+                  <input id="uploadInput"  class="form-control" type="file">
+                </div>
+                <div class="col-auto">
+                  <button id="uploadFile" class="btn btn-primary">Load</button>
+                </div>
+                <div class="col-auto">
+                  <a id="saveChar" class="btn btn-primary">Save</a>
                 </div>
               </div>
             </div>
