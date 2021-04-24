@@ -36,7 +36,7 @@ const data = {
               "Description": "Sex drugs and rock and roll!  By taking your mind off things, destressing and getting wild you're able to give yourself a break from the monotony.While this might drain other people, you gain back intellectual HP by having fun."
             }
           ],
-          "CharTraits": []
+          "CharTraits": ["Creative", "Curious", "Unorthodox", "Unpredictable", "Experimental", "Risky"]
         },
         {
           "Id": "traitTraditional",
@@ -59,7 +59,7 @@ const data = {
               "Description": "By retreating back into your faith you are able to gain back the stability you've been missing and regain your thoughts. Prolonged peaceful prayer from dogmatic religions, participating in religious practices and ceremony replenish 1 ability of your choosing. Can only be used once per session."
             }
           ],
-          "CharTraits": []
+          "CharTraits": ["Ceremonial", "Conventional", "Data-Driven", "Dogmatic", "Safe", "Unrelenting"]
         }
       ]
     },
@@ -89,7 +89,7 @@ const data = {
               "Description": "You know how to hold back and bite your tongue, respond appropriately and listen when you need to. Receive bonuses when befriending someone."
             }
           ],
-          "CharTraits": []
+          "CharTraits": ["Disicplined", "Dutiful", "Stubborn", "Focused", "Ambitious", "Dependable"]
         },
         {
           "Id": "traitCareless",
@@ -112,7 +112,7 @@ const data = {
               "Description": "You've got a gang. Not a violent one, just a little one. A couple of pals, maybe stoner friends, or buds down at the pub. They might not be bad ass but they don't work so you can always call them in a pinch."
             }
           ],
-          "CharTraits": []
+          "CharTraits": ["Flexible", "Easy Going", "Spontaneous", "Adaptable", "Unreliable", "Laid Back"]
         }
       ]
     },
@@ -142,7 +142,7 @@ const data = {
               "Description": "If you have time t give a speech, your party will get -1 to their first role in that conflict."
             }
           ],
-          "CharTraits": ["Optimist", "Flamboyant", "Talkative", "Bubbly"]
+          "CharTraits": ["Optimist", "Flamboyant", "Talkative", "Bubbly", "Gregarious", "Enthusiastic", "Assertive"]
         },
         {
           "Id": "traitIntrovert",
@@ -165,7 +165,7 @@ const data = {
               "Description": "Through your reserved demeanor and low profile you tend to blend into crowds. Get bonuses when hiding losing a tail, avoiding being seen and other such events when in a crowd or social function."
             }
           ],
-          "CharTraits": ["Quiet", "Reserved", "Shy"]
+          "CharTraits": ["Quiet", "Reserved", "Shy", "Analytical", "Independent", "Reflective"]
         }
       ]
     },
@@ -248,7 +248,7 @@ const data = {
               "Description": "Gain a little 10 character points when rolling a critical fail."
             }
           ],
-          "CharTraits": ["Anxious", "Cautious", "Pessimist", "Depressed", "Jealous"]
+          "CharTraits": ["Anxious", "Cautious", "Pessimist", "Depressed", "Jealous", "Providing", "Self-Aware", "Realistic"]
         },
         {
           "Id": "traitResilient",
@@ -271,7 +271,7 @@ const data = {
               "Description": "When reaching 0 in emotional health roll a 6 sided die. If it lands on odd, add that back to your HP."
             }
           ],
-          "CharTraits": ["Calm", "Realist", "Stable"]
+          "CharTraits": ["Calm", "Realist", "Stable", "Resilient", "Unintuitive"]
         }
       ]
     }
@@ -480,7 +480,7 @@ const data = {
       },
       {
         "Name": "Inspiring Feat",
-        "Description": "You perform a physical feat at such an amazing sill level you gain confidence like never before. After successfully rolling any physical skill in a conflict use this ability to move yourself up an state of existence.",
+        "Description": "You perform a physical feat at such an amazing skill level you gain confidence like never before. After successfully rolling any physical skill in a conflict use this ability to move yourself up an state of existence.",
         "Required": [],
         "Disallowed": []
       },

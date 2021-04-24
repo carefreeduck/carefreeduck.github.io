@@ -9,7 +9,7 @@ let currentPage = 1;
 
 let trackedData = {
   "Version": curVersion,
-  "CharImgUrl": "",
+  "CharImgUrl": "portrait.jpg",
   "CharName": "",
   "CharSpecies": 0,
   "CharAge": 0,
@@ -420,6 +420,12 @@ function bindPersonalityEvents() {
       }
     }
   }
+
+  $('.help-desc-button').click(function() {
+    const id = "#" + $(this).data("target");
+    $(".toggle-desc:not(" + id + ")").hide();
+    $(id).toggle();
+  });
 }
 
 function buildFlawControls() {
@@ -1016,15 +1022,9 @@ function buildFromData() {
   fillItems();
   
   updateDownloadLink();
-  $('.help-desc-button').click(function() {
-    const id = "#" + $(this).data("target");
-    $(".toggle-desc:not(" + id + ")").hide();
-    $(id).toggle();
-  });
 
   $("#loadingOverlay").show();
   showPage(currentPage, function() {
-    console.log("done");
     $("#loadingOverlay").hide();
   });
 }
