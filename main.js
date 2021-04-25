@@ -90,6 +90,7 @@ function buildMcs() {
   $("#mcsImage").html('<img src="' + trackedData.CharImgUrl + '" class="img-thumbnail img-fluid" alt="">');
   $("#mcsName").html(trackedData.CharName);
   $("#mcsBio").html(trackedData.CharBio);
+  $("#mcsExtBio").html(trackedData.CharExtBio);
 
   $("#mcsWealth").html(data.Customization.Wealth[trackedData.CharWealth]);
   $("#mcsAge").html(data.Customization.Age[trackedData.CharAge]);
@@ -1139,5 +1140,20 @@ $(document).ready(function() {
 
   $("#uploadFile").click(function() {
     loadFile();
+  });
+
+  $("#mcsExtBio").hide();
+  $("#bioSwitchLink").click(function() {
+    const cur = $(this).html();
+    if (cur === "More..") {
+      $("#mcsBio").hide();
+      $("#mcsExtBio").show();
+      $(this).html("Less..");
+    }
+    else {
+      $("#mcsBio").show();
+      $("#mcsExtBio").hide();
+      $(this).html("More..");
+    }
   });
 });
