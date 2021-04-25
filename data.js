@@ -315,6 +315,7 @@ const data = {
   "DnaData": {
     "DnaMin": -2,
     "DnaMax": 2,
+    "PointMultipliers": [14, 12, 10, 8, 6],
     "Skills": [
       [
         {

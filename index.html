@@ -15,6 +15,7 @@
   <body>
     <nav id="navbar-example2" class="navbar sticky-top navbar-light bg-light px-3">
       <a class="navbar-brand" href="">Character Creator</a>
+      <span>Points: <span id="currentPoints">0</span>/<span id="maxPoints">150</span></span>
       <ul class="nav nav-pills">
         <li id="link1" class="nav-item">
           <a class="nav-link" href="#">Physical Characteristics</a>
@@ -50,9 +51,6 @@
     </nav>
 
     <div class="container-fluid">
-      <!-- <div class="container mb-3 p-0"> -->
-        <!-- <h4>Points: <span id="currentPoints">0</span>/150</h4> -->
-      <!-- </div> -->
       <div class="page-top-container">
         <div class="row g-0 page-container">
           <div class="col customization-page">
@@ -126,7 +124,8 @@
           <div class="col customization-page">
             <div id="row3" class="customization-container container">
               <h3>Flaws</h3>
-              <p>This section describes flawed aspects of your character. For every Affliction you take, input -10 for points for minor, -20 for major and -30 for fatal and select the effect that affliction has on your character.</p>
+              <p>This section describes flawed aspects of your character. For every Affliction you take, select the effect that affliction has on your character.</p>
+              <div class="form-text">Minor: <span id="minorFlawPoints">-10</span> points, Major: <span id="majorFlawPoints">-20</span> points, Fatal: <span id="fatalFlawPoints">-30</span> points</div>
               <div id="flawList" class="mb-3"></div>
               <form id="flawsForm" onsubmit="return false">
                 <div class="mb-3">

@@ -1,6 +1,12 @@
 console.log(data);
 
+const maxPoints = 150;
 const passiveAbilityCost = 10;
+const actionAbilityCost = 10;
+const minorFlawPoints = -10;
+const majorFlawPoints = -20;
+const fatalFlawPoints = -30;
+const skillLevelMultipliers = [1, 2, 3, 4, 5];
 
 const curVersion = "v0.1";
 
@@ -31,6 +37,54 @@ let trackedData = {
   "CharExtBio": "",
   "Items": [],
 };
+
+function calculatePoints() {
+  let totalPoints = 0;
+
+  for (const persData of trackedData.PersonalityData) {
+    totalPoints += persData.Passives.length * passiveAbilityCost;
+  }
+
+  for (const flaw of trackedData.Flaws) {
+    if (flaw.Intensity === data.FlawData.Intensities[0].Name) {
+      totalPoints += minorFlawPoints;
+    }
+    else if (flaw.Intensity === data.FlawData.Intensities[1].Name) {
+      totalPoints += majorFlawPoints;
+    }
+    else if (flaw.Intensity === data.FlawData.Intensities[2].Name) {
+      totalPoints += fatalFlawPoints;
+    }
+  }
+
+  for (let i = 0; i < trackedData.Skills.length; i++) {
+    const skillGroup = trackedData.Skills[i];
+    for (const skill of skillGroup) {
+      let cost = data.DnaData.PointMultipliers[trackedData.DnaBalance[i] - data.DnaData.DnaMin];
+      if (skill.Level === "Average") {
+        cost *= skillLevelMultipliers[0];
+      }
+      else if (skill.Level === "Talented") {
+        cost *= skillLevelMultipliers[1];
+      }
+      else if (skill.Level === "Elite") {
+        cost *= skillLevelMultipliers[2];
+      }
+      else if (skill.Level === "Super") {
+        cost *= skillLevelMultipliers[3];
+      }
+      else if (skill.Level === "Incredible") {
+        cost *= skillLevelMultipliers[4];
+      }
+
+      totalPoints += cost;
+    }
+  }
+
+  totalPoints += trackedData.Abilities.length * actionAbilityCost;
+
+  $("#currentPoints").html(totalPoints);
+}
 
 function buildMcs() {
   $("#mcsImage").html('<img src="' + trackedData.CharImgUrl + '" class="img-thumbnail img-fluid" alt="">');
@@ -209,7 +263,16 @@ function buildMcs() {
   }
 }
 
+function fillPointData() {
+  $("#maxPoints").html(maxPoints);
+  $("#minorFlawPoints").html(minorFlawPoints);
+  $("#majorFlawPoints").html(majorFlawPoints);
+  $("#fatalFlawPoints").html(fatalFlawPoints);
+}
+
 function fillInitialItems() {
+  fillPointData();
+
   $("#charImgUrl").val(trackedData.CharImgUrl);
   $("#charName").val(trackedData.CharName);
 
@@ -912,10 +975,6 @@ function toggle(identifier) {
   $(identifier).toggle();
 }
 
-function calculatePoints() {
-  
-}
-
 function setTrackedDataAsCookie() {
   const value = window.btoa(JSON.stringify(trackedData));
   document.cookie = "trackedData=" + value;
@@ -988,6 +1047,7 @@ function onTrackedDataChange(key, value) {
   console.log(trackedData);
   //setTrackedDataAsCookie();
   updateDownloadLink();
+  calculatePoints();
   
   if (key === "PersonalityData") {
     checkSelectedAbilities();
@@ -1022,6 +1082,7 @@ function buildFromData() {
   fillItems();
   
   updateDownloadLink();
+  calculatePoints();
 
   $("#loadingOverlay").show();
   showPage(currentPage, function() {
