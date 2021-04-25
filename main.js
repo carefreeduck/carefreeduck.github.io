@@ -327,6 +327,8 @@ function fillPersonalityTrackedData() {
 }
 
 function buildPersonalityControls(container) {
+  $(container).html("");
+
   for (let p = 0; p < data.PersTraits.length; p++) {
     const persTrait = data.PersTraits[p];
     let traitCont = "";
