@@ -25,6 +25,7 @@ let trackedData = {
   "CharHeight": 0,
   "CharBuild": 0,
   "CharWealth": 0,
+  "CharMaxPoints": maxPoints,
   "PersonalityData": [],
   "Flaws": [],
   "DnaBalance": [0, 0, 0],
@@ -265,7 +266,6 @@ function buildMcs() {
 }
 
 function fillPointData() {
-  $("#maxPoints").html(maxPoints);
   $("#minorFlawPoints").html(minorFlawPoints);
   $("#majorFlawPoints").html(majorFlawPoints);
   $("#fatalFlawPoints").html(fatalFlawPoints);
@@ -274,8 +274,10 @@ function fillPointData() {
 function fillInitialItems() {
   fillPointData();
 
+  $("#maxPoints").html(trackedData.CharMaxPoints);
   $("#charImgUrl").val(trackedData.CharImgUrl);
   $("#charName").val(trackedData.CharName);
+  $("#charMaxPoints").val(trackedData.CharMaxPoints);
 
   $("#dnaBalance").html(trackedData.DnaBalance[0] + trackedData.DnaBalance[1] + trackedData.DnaBalance[2]);
   $("#phsicalityRange").val(trackedData.DnaBalance[0]);
@@ -1020,10 +1022,10 @@ function loadFile() {
     const reader = new FileReader();
     reader.readAsText(selectedFile, "UTF-8");
     reader.onload = function (evt) {
-      console.log(evt.target.result);
       try {
         const value = window.atob(evt.target.result);
         const parsedData = JSON.parse(value);
+        console.log(parsedData);
         if (parsedData.Version === curVersion) {
           trackedData = parsedData;
           buildFromData();
@@ -1122,6 +1124,12 @@ $(document).ready(function() {
   
   $("input[type=text].tracked-data").change(function() {
     const value = $(this).val();
+    const key = $(this).data("sdtarget");
+    onTrackedDataChange(key, value);
+  });
+  
+  $("input[type=number].tracked-data").change(function() {
+    const value = parseInt($(this).val());
     const key = $(this).data("sdtarget");
     onTrackedDataChange(key, value);
   });
