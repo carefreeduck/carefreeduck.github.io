@@ -1058,6 +1058,9 @@ function onTrackedDataChange(key, value) {
   else if (key === "CharImgUrl") {
     placeImage();
   }
+  else if (key === "CharMaxPoints") {
+    $("#maxPoints").html(trackedData.CharMaxPoints);
+  }
 }
 
 function buildFromData() {
