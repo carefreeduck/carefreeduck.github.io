@@ -497,15 +497,18 @@ function bindPersonalityEvents() {
 }
 
 function buildFlawControls() {
+  $("#flawCategory").html("");
   for (const category of data.FlawData.Categories) {
     $("#flawCategory").append('<option>' + category + '</option>');
   }
 
+  $("#flawDna").html("");
   for (const dna of data.FlawData.Dnas) {
     $("#flawDna").append('<option>' + dna + '</option>');
   }
 
   let effects = [];
+  $("#flawIntensity").html("");
   for (const intensity of data.FlawData.Intensities) {
     $("#flawIntensity").append('<option>' + intensity.Name + '</option>');
     if (effects.length === 0) {
@@ -513,6 +516,7 @@ function buildFlawControls() {
     }
   }
 
+  $("#flawEffect").html("");
   for (const effect of effects) {
     $("#flawEffect").append('<option>' + effect + '</option>');
   }
