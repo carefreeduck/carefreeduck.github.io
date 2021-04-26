@@ -1083,9 +1083,7 @@ function buildFromData() {
   bindFlawEvents();
 
   fillDnaSkills();
-  bindSkillEvents();
 
-  fillDnaSkillOptions(0);
   fillSelectedAbilities();
   fillAbilities();
   
@@ -1115,6 +1113,8 @@ $(document).ready(function() {
   //getTrackedDataFromCookie();
   
   buildFromData();
+  bindSkillEvents();
+  fillDnaSkillOptions(0);
 
   // var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
   // var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
