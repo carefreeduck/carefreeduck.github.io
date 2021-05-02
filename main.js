@@ -1017,7 +1017,8 @@ function getTrackedDataFromCookie() {
 
 function updateDownloadLink() {
   const link = document.getElementById("saveChar");
-  const file = new Blob([window.btoa(JSON.stringify(trackedData))], {type: 'text/plain'});
+  const jsonStr = JSON.stringify(trackedData);
+  const file = new Blob([window.btoa(unescape(encodeURIComponent(jsonStr)))], {type: 'text/plain'});
   link.href = URL.createObjectURL(file);
   link.download = 'wegorpg_character';
 }
@@ -1029,7 +1030,7 @@ function loadFile() {
     reader.readAsText(selectedFile, "UTF-8");
     reader.onload = function (evt) {
       try {
-        const value = window.atob(evt.target.result);
+        const value = decodeURIComponent(escape(window.atob(evt.target.result)));
         const parsedData = JSON.parse(value);
         console.log(parsedData);
         if (parsedData.Version === curVersion) {
