@@ -1029,18 +1029,40 @@ function loadFile() {
     const reader = new FileReader();
     reader.readAsText(selectedFile, "UTF-8");
     reader.onload = function (evt) {
+      let value = "";
       try {
-        const value = decodeURIComponent(escape(window.atob(evt.target.result)));
-        const parsedData = JSON.parse(value);
-        console.log(parsedData);
-        if (parsedData.Version === curVersion) {
-          trackedData = parsedData;
-          buildFromData();
-        }
+        value = decodeURIComponent(escape(window.atob(evt.target.result)));
       }
       catch(e) {
+        value = "";
+      }
+      
+      if (value === "") {
+        try {
+          value = window.atob(evt.target.result);
+        }
+        catch(e) {
+          value = "";
+        }
+      }
+      
+      if (value !== "") {
+        try {
+          const parsedData = JSON.parse(value);
+          console.log(parsedData);
+          if (parsedData.Version === curVersion) {
+            trackedData = parsedData;
+            buildFromData();
+          }
+        }
+        catch(e) {
+          alert("Invalid content");
+        }
+      }
+      else {
         alert("Invalid content");
       }
+      
     }
     reader.onerror = function (evt) {
       alert("Could not read file");
