@@ -13,7 +13,7 @@ const curVersion = "v0.1";
 const pageCount = 8;
 let currentPage = 1;
 
-let trackedData = {
+let defData = {
   "Version": curVersion,
   "CharImgUrl": "portrait.jpg",
   "CharName": "",
@@ -38,6 +38,62 @@ let trackedData = {
   "CharExtBio": "",
   "Items": [],
 };
+
+let trackedData = JSON.parse(JSON.stringify(defData));
+
+function migrateProperty(data, pname) {
+  if (!data.hasOwnProperty(pname)) {
+    console.log("Migrated data doesn't have property: " + pname);
+  }
+  else if (typeof data[pname] !== typeof trackedData[pname]) {
+    console.log("Migrated data doesn't have correct property type: " + (typeof data[pname]));
+  }
+  else {
+    trackedData[pname] = data[pname];
+  }
+}
+
+function migrateTrackedData(data) {
+  if (!data || typeof data !== 'object') {
+    alert("Invalid data");
+    return;
+  }
+
+  if (!data.hasOwnProperty('Version')) {
+    alert("Invalid data");
+    return;
+  }
+
+  if (data.Version !== curVersion) {
+    alert("Old save");
+    return;
+  }
+
+  trackedData = JSON.parse(JSON.stringify(defData));
+
+  migrateProperty(data, "CharImgUrl");
+  migrateProperty(data, "CharName");
+  migrateProperty(data, "CharSpecies");
+  migrateProperty(data, "CharAge");
+  migrateProperty(data, "CharGender");
+  migrateProperty(data, "CharHairColour");
+  migrateProperty(data, "CharEyeColour");
+  migrateProperty(data, "CharHeight");
+  migrateProperty(data, "CharBuild");
+  migrateProperty(data, "CharWealth");
+  migrateProperty(data, "CharMaxPoints");
+  migrateProperty(data, "PersonalityData");
+  migrateProperty(data, "Flaws");
+  migrateProperty(data, "DnaBalance");
+  migrateProperty(data, "Skills");
+  migrateProperty(data, "Abilities");
+  migrateProperty(data, "MotiveType");
+  migrateProperty(data, "MotiveDesc");
+  migrateProperty(data, "MotiveRes");
+  migrateProperty(data, "CharBio");
+  migrateProperty(data, "CharExtBio");
+  migrateProperty(data, "Items");
+}
 
 function calculatePoints() {
   let totalPoints = 0;
@@ -1029,31 +1085,32 @@ function loadFile() {
     const reader = new FileReader();
     reader.readAsText(selectedFile, "UTF-8");
     reader.onload = function (evt) {
-      let value = "";
+      let atobValue = "";
       try {
-        value = decodeURIComponent(escape(window.atob(evt.target.result)));
+        atobValue = window.atob(evt.target.result);
       }
       catch(e) {
-        value = "";
+        alert("Invalid content");
+        return;
       }
       
-      if (value === "") {
-        try {
-          value = window.atob(evt.target.result);
-        }
-        catch(e) {
-          value = "";
-        }
+      let value = atobValue;
+      try {
+        value = decodeURIComponent(escape(atobValue));
+        // Parse here just to make sure it s valid
+        const testParsed = JSON.parse(value);
+        const testVersion = testParsed.Version;
+      }
+      catch(e) {
+        value = atobValue;
       }
       
       if (value !== "") {
         try {
           const parsedData = JSON.parse(value);
           console.log(parsedData);
-          if (parsedData.Version === curVersion) {
-            trackedData = parsedData;
-            buildFromData();
-          }
+          migrateTrackedData(parsedData)
+          buildFromData();
         }
         catch(e) {
           alert("Invalid content");
