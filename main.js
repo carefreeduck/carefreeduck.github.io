@@ -13,6 +13,8 @@ const curVersion = "v0.1";
 const pageCount = 8;
 let currentPage = 1;
 
+let saveData = "";
+
 let defData = {
   "Version": curVersion,
   "CharImgUrl": "portrait.jpg",
@@ -1074,9 +1076,88 @@ function getTrackedDataFromCookie() {
 function updateDownloadLink() {
   const link = document.getElementById("saveChar");
   const jsonStr = JSON.stringify(trackedData);
-  const file = new Blob([window.btoa(unescape(encodeURIComponent(jsonStr)))], {type: 'text/plain'});
+  saveData = window.btoa(unescape(encodeURIComponent(jsonStr)));
+  const file = new Blob([saveData], {type: 'text/plain'});
   link.href = URL.createObjectURL(file);
   link.download = 'wegorpg_character';
+}
+
+function saveOnlineData() {
+  const charUrl = $("#charUrl").val();
+  const authKey = $("#authKey").val();
+  
+  if (!charUrl || charUrl.length < 3) {
+    alert("Invalid Character URL");
+    return;
+  }
+
+  if (!authKey || authKey.length < 1) {
+    alert("Invalid Auth Key");
+    return;
+  }
+
+  $("#saveCharOnline").prop("disabled", true);
+  $("#saveCharOnline").html("Saving..");
+  $("#savedCharLink").html("");
+  $.ajax({
+    method: "POST",
+    url: "https://wgrpg.herokuapp.com/char",
+    data: '{"id":"' + charUrl + '","data":"' + saveData + '","authKey":"' + authKey + '"}'
+  })
+  .done(function(result){
+    console.log(result);
+    try {
+      const parsedRes = JSON.parse(result);
+      if (!!parsedRes.success) {
+        const url = window.location.origin + "/?c=" + charUrl;
+        $("#savedCharLink").html('<a href="' + url + '" target="_blank">' + url + '</a>');
+      }
+    }
+    catch (e) {
+      alert("Invalid response from server");
+    }
+  })
+  .always(function(){
+    $("#saveCharOnline").prop("disabled", false);
+    $("#saveCharOnline").html("Save");
+  });
+}
+
+function loadData(data) {
+  let atobValue = "";
+  try {
+    atobValue = window.atob(data);
+  }
+  catch(e) {
+    alert("Invalid content");
+    return;
+  }
+  
+  let value = atobValue;
+  try {
+    value = decodeURIComponent(escape(atobValue));
+    // Parse here just to make sure it s valid
+    const testParsed = JSON.parse(value);
+    const testVersion = testParsed.Version;
+  }
+  catch(e) {
+    value = atobValue;
+  }
+  
+  if (value !== "") {
+    try {
+      const parsedData = JSON.parse(value);
+      console.log(parsedData);
+      migrateTrackedData(parsedData)
+      buildFromData();
+    }
+    catch(e) {
+      alert("Invalid content");
+    }
+  }
+  else {
+    alert("Invalid content");
+  }
 }
 
 function loadFile() {
@@ -1085,41 +1166,7 @@ function loadFile() {
     const reader = new FileReader();
     reader.readAsText(selectedFile, "UTF-8");
     reader.onload = function (evt) {
-      let atobValue = "";
-      try {
-        atobValue = window.atob(evt.target.result);
-      }
-      catch(e) {
-        alert("Invalid content");
-        return;
-      }
-      
-      let value = atobValue;
-      try {
-        value = decodeURIComponent(escape(atobValue));
-        // Parse here just to make sure it s valid
-        const testParsed = JSON.parse(value);
-        const testVersion = testParsed.Version;
-      }
-      catch(e) {
-        value = atobValue;
-      }
-      
-      if (value !== "") {
-        try {
-          const parsedData = JSON.parse(value);
-          console.log(parsedData);
-          migrateTrackedData(parsedData)
-          buildFromData();
-        }
-        catch(e) {
-          alert("Invalid content");
-        }
-      }
-      else {
-        alert("Invalid content");
-      }
-      
+      loadData(evt.target.result);
     }
     reader.onerror = function (evt) {
       alert("Could not read file");
@@ -1180,9 +1227,7 @@ function buildFromData() {
   });
 }
 
-$(document).ready(function() {
-  console.log(window.location);
-
+function initialSetup() {
   for (let i = 1; i <= pageCount; i++) {
     $( "#link" + i ).click(function() {
       showPage(i);
@@ -1195,13 +1240,6 @@ $(document).ready(function() {
   buildFromData();
   bindSkillEvents();
   fillDnaSkillOptions(0);
-
-  // var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-  // var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-    // return new bootstrap.Popover(popoverTriggerEl, {
-      // trigger: 'hover focus'
-    // });
-  // });
   
   $('.ability-options').toggle();
   
@@ -1253,4 +1291,30 @@ $(document).ready(function() {
       $(this).html("More..");
     }
   });
+  
+  $("#saveCharOnline").click(function() {
+    saveOnlineData();
+  });
+}
+
+$(document).ready(function() {
+  console.log(window.location);
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const charId = urlParams.has("c") ? urlParams.get("c") : "";
+  if (!!charId && charId.length > 0) {
+    $.ajax({
+      url: "https://wgrpg.herokuapp.com/char/" + charId
+    })
+    .done(function(result){
+      console.log(result);
+      loadData(result);
+      currentPage = pageCount;
+      initialSetup();
+    });
+  }
+  else {
+    initialSetup();
+  }
+  
 });

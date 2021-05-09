@@ -245,7 +245,7 @@ const data = {
             },
             {
               "Name": "I'm my own best critic",
-              "Description": "Gain a little 10 character points when rolling a critical fail."
+              "Description": "Gain a little 1 character points when rolling a critical fail."
             }
           ],
           "CharTraits": ["Anxious", "Cautious", "Pessimist", "Depressed", "Jealous", "Providing", "Self-Aware", "Realistic"]
