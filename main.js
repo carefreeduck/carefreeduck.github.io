@@ -1124,6 +1124,14 @@ function saveOnlineData() {
 }
 
 function loadData(data) {
+  try {
+    const dataParsed = JSON.parse(data);
+    if (!!dataParsed && dataParsed.hasOwnProperty("success") && !dataParsed.success) {
+      alert("Failed: " + dataParsed.error);
+      return;
+    }
+  } catch(e) {}
+
   let atobValue = "";
   try {
     atobValue = window.atob(data);
@@ -1227,6 +1235,31 @@ function buildFromData() {
   });
 }
 
+function checkOnlineSaveInput() {
+  let isValid = true;
+
+  const regex = new RegExp("^[a-z0-9]+$", "i");
+  const charUrl = $("#charUrl").val();
+  if (regex.test(charUrl) && charUrl.length > 2) {
+    $("#charUrl").removeClass("is-invalid");
+  }
+  else {
+    $("#charUrl").addClass("is-invalid");
+    isValid = false;
+  }
+
+  const authKey = $("#authKey").val();
+  if (authKey.length > 0) {
+    $("#authKey").removeClass("is-invalid");
+  }
+  else {
+    $("#authKey").addClass("is-invalid");
+    isValid = false;
+  }
+
+  $("#saveCharOnline").prop("disabled", !isValid);
+}
+
 function initialSetup() {
   for (let i = 1; i <= pageCount; i++) {
     $( "#link" + i ).click(function() {
@@ -1295,6 +1328,16 @@ function initialSetup() {
   $("#saveCharOnline").click(function() {
     saveOnlineData();
   });
+
+  $("#charUrl").on('input', function() {
+    checkOnlineSaveInput();
+  });
+
+  $("#authKey").on('input', function() {
+    checkOnlineSaveInput();
+  });
+
+  checkOnlineSaveInput();
 }
 
 $(document).ready(function() {
@@ -1303,6 +1346,8 @@ $(document).ready(function() {
   const urlParams = new URLSearchParams(window.location.search);
   const charId = urlParams.has("c") ? urlParams.get("c") : "";
   if (!!charId && charId.length > 0) {
+    $("#charUrl").val(charId);
+
     $.ajax({
       url: "https://wgrpg.herokuapp.com/char/" + charId
     })
