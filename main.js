@@ -1292,14 +1292,17 @@ function checkOnlineSaveInput() {
   $("#saveCharOnline").prop("disabled", !isValid);
 }
 
-function initialSetup() {
+function initialSetup(shouldFillPersData) {
   for (let i = 1; i <= pageCount; i++) {
     $( "#link" + i ).click(function() {
       showPage(i);
     });
   }
 
-  fillPersonalityTrackedData();
+  if (shouldFillPersData) {
+    fillPersonalityTrackedData();
+  }
+
   //getTrackedDataFromCookie();
   
   buildFromData();
@@ -1398,11 +1401,11 @@ $(document).ready(function() {
       console.log(result);
       loadData(result);
       currentPage = pageCount;
-      initialSetup();
+      initialSetup(false);
     });
   }
   else {
-    initialSetup();
+    initialSetup(true);
   }
   
 });
