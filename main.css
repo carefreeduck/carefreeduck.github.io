@@ -94,3 +94,26 @@
 .disabled-card {
   border-color: #dd0000;
 }
+
+.state-button {
+  width: 20px;
+  text-align: center;
+  padding: 0;
+}
+
+.state-bar {
+  margin-top: 4px;
+  height: 20px;
+}
+
+#stateBar0 {
+  background-color: #FBC647;
+}
+
+#stateBar1 {
+  background-color: #B747FB;
+}
+
+#stateBar2 {
+  background-color: #36A618;
+}

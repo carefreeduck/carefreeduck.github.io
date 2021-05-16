@@ -8,6 +8,7 @@ const data = {
     "Height": ["Dwarf", "Short", "Average Height", "Tall", "Giant"],
     "Build": ["Ectomorph", "Mesomorph", "Endomorph"],
     "Wealth": ["Homeless", "Lower Class", "Middle Class", "Upper Class", "Ruling Class"],
+    "StateOfExistence": ["Healthy", "Tired", "Wounded", "Incapacitated"],
   },
   "PersTraits": [
     {

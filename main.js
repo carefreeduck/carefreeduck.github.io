@@ -7,6 +7,7 @@ const minorFlawPoints = -10;
 const majorFlawPoints = -20;
 const fatalFlawPoints = -30;
 const skillLevelMultipliers = [1, 2, 3, 4, 5];
+const maxState = 10;
 
 const curVersion = "v0.1";
 
@@ -39,6 +40,8 @@ let defData = {
   "CharBio": "",
   "CharExtBio": "",
   "Items": [],
+  "StateOfExistence": 0,
+  "States": [maxState, maxState, maxState],
 };
 
 let trackedData = JSON.parse(JSON.stringify(defData));
@@ -95,6 +98,8 @@ function migrateTrackedData(data) {
   migrateProperty(data, "CharBio");
   migrateProperty(data, "CharExtBio");
   migrateProperty(data, "Items");
+  migrateProperty(data, "StateOfExistence");
+  migrateProperty(data, "States");
 }
 
 function calculatePoints() {
@@ -375,6 +380,7 @@ function fillCustomizations() {
   fillCustomization("height", "Height", "CharHeight");
   fillCustomization("build", "Build", "CharBuild");
   fillCustomization("wealth", "Wealth", "CharWealth");
+  fillCustomization("stateOfExistence", "StateOfExistence", "StateOfExistence");
 }
 
 function fillPersonalityTrackedData() {
@@ -964,6 +970,27 @@ function deleteItem(index) {
   fillItems();
 }
 
+function buildStates() {
+  for (let i = 0; i < trackedData.States.length; i++) {
+    const val = trackedData.States[i];
+    const id = "#stateBar" + i;
+    $(id).html("" + val);
+    $(id).attr("aria-valuenow", "" + val);
+    $(id).css("width", (val * 100 / maxState) + "%");
+  }
+}
+
+function onStateChanged(index, change) {
+  const final = trackedData.States[index] + change;
+  if(final < 0 || final > maxState) {
+    return;
+  }
+
+  let states = trackedData.States;
+  states[index] = final;
+  onTrackedDataChange("States", states);
+}
+
 function showPage(number, onEnd) {
   if (number === 5) {
     fillSelectedAbilities();
@@ -1202,6 +1229,9 @@ function onTrackedDataChange(key, value) {
   else if (key === "CharMaxPoints") {
     $("#maxPoints").html(trackedData.CharMaxPoints);
   }
+  else if (key === "States") {
+    buildStates();
+  }
 }
 
 function buildFromData() {
@@ -1225,6 +1255,8 @@ function buildFromData() {
   fillMotives();
 
   fillItems();
+
+  buildStates();
   
   updateDownloadLink();
   calculatePoints();
@@ -1273,6 +1305,7 @@ function initialSetup() {
   buildFromData();
   bindSkillEvents();
   fillDnaSkillOptions(0);
+  buildStates();
   
   $('.ability-options').toggle();
   
@@ -1336,6 +1369,16 @@ function initialSetup() {
   $("#authKey").on('input', function() {
     checkOnlineSaveInput();
   });
+
+  for (let i = 0; i < 3; i++) {
+    $("#decreaseState" + i).click(function() {
+      onStateChanged(i, -1);
+    });
+  
+    $("#inreaseState" + i).click(function() {
+      onStateChanged(i, 1);
+    });
+  }
 
   checkOnlineSaveInput();
 }
