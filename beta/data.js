@@ -345,7 +345,7 @@ const data = {
         },
         {
           "Name": "Aesthetics",
-          "Description": "The physical appearance of your character."
+          "Description": "The physical appearance of your character, used in conflict versus willpower. If the opponent fails then they are attracted to your character."
         },
         {
           "Name": "Senses",
