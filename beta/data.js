@@ -464,15 +464,15 @@ const data = {
       },
       {
         "Name": "Disengage",
-        "Description": "Get out of a conflict situation when you roll +4 on your skill check. Forgo your damage to the opponet, as you are leaving the altercation.",
+        "Description": "Get out of a conflict situation when you roll +4 on your skill check. Forgo your damage to the opponent, as you are leaving the altercation.",
         "Required": [],
         "Disallowed": []
       },
       {
         "Name": "Trick Shot",
         "Description": "Reduce your physical skill by 4; triple your damage.",
-        "Required": [[1, 1, -1]],
-        "Disallowed": [[4, 0, -1]]
+        "Required": [],
+        "Disallowed": []
       },
       {
         "Name": "Over Exertion",
@@ -482,7 +482,7 @@ const data = {
       },
       {
         "Name": "Multitask",
-        "Description": "Use 2 points (up to 6) to reduce 1 point (up to 3) of damage to an another teammate (as many as you have points to distribute)",
+        "Description": "Use 2 points (up to 6) to reduce 1 point (up to 3) of damage to another teammate (as many as you have points to distribute)",
         "Required": [],
         "Disallowed": []
       },
@@ -495,7 +495,7 @@ const data = {
       {
         "Name": "Guardian",
         "Description": "Instead of causing damage, use your damage role and deduct it from another party member's skill roll.",
-        "Required": [[3, 0, -1]],
+        "Required": [],
         "Disallowed": []
       }
     ],
@@ -508,13 +508,13 @@ const data = {
       },
       {
         "Name": "Disengage",
-        "Description": "Get out of a conflict situation when you roll +4 on your skill check. Forgo your damage to the opponet, as you are leaving the altercation.",
+        "Description": "Get out of a conflict situation when you roll +4 on your skill check. Forgo your damage to the opponent, as you are leaving the altercation.",
         "Required": [],
         "Disallowed": []
       },
       {
-        "Name": "Unorthidox Appeal",
-        "Description": "Reduce your physical skill by 4; roll 2 damage dice",
+        "Name": "Unorthodox Appeal",
+        "Description": "Reduce your emotional skill by 4; roll 2 damage dice",
         "Required": [],
         "Disallowed": []
       },
@@ -526,7 +526,7 @@ const data = {
       },
       {
         "Name": "Multitask",
-        "Description": "Use 2 points (up to 6) to reduce 1 point (up to 3) of damage to an another teammate (as many as you have points to distribute)",
+        "Description": "Use 2 points (up to 6) to reduce 1 point (up to 3) of damage to another teammate (as many as you have points to distribute)",
         "Required": [],
         "Disallowed": []
       },
@@ -552,13 +552,13 @@ const data = {
       },
       {
         "Name": "Disengage",
-        "Description": "Get out of a conflict situation when you roll +4 on your skill check. Forgo your damage to the opponet, as you are leaving the altercation.",
+        "Description": "Get out of a conflict situation when you roll +4 on your skill check. Forgo your damage to the opponent, as you are leaving the altercation.",
         "Required": [],
         "Disallowed": []
       },
       {
         "Name": "Twist of the Tongue",
-        "Description": "Reduce your physical skill by 4; roll 2 damage dice",
+        "Description": "Reduce your intellectual skill by 4; roll 2 damage dice",
         "Required": [],
         "Disallowed": []
       },
@@ -582,7 +582,7 @@ const data = {
       },
       {
         "Name": "Multitask",
-        "Description": "Use 2 points (up to 6) to reduce 1 point (up to 3) of damage to an another teammate (as many as you have points to distribute)",
+        "Description": "Use 2 points (up to 6) to reduce 1 point (up to 3) of damage to another teammate (as many as you have points to distribute)",
         "Required": [],
         "Disallowed": []
       }
@@ -609,7 +609,7 @@ const data = {
     },
     {
       "Name": "Inspiring Feat",
-      "Description": "You perform a physical feat at such an amazing sill level you gain confidence like never before. After successfully rolling a single physical skill in a conflict use this ability to move yourself up an state of existence. All other party members get +1 to their skill check.",
+      "Description": "You perform a physical feat at such an amazing sill level you gain confidence like never before. After successfully rolling a single physical skill in a conflict use this ability to move yourself up a state of existence. All other party members get +1 to their skill check.",
       "Required": [],
       "Disallowed": []
     },
@@ -639,7 +639,7 @@ const data = {
     },
     {
       "Name": "Never Give up, Never Surrender",
-      "Description": "In one last dire attempt to persevere, your emotional resilience peaks and you barrel forward stronger than ever. When you are in the wounded state of existence,  make a last ditch effort by boosting your critical successes to 3, 4, 5, 6 and 7 until you either lose the encounter or heal up a state of existence.",
+      "Description": "In one last dire attempt to persevere, your emotional resilience peaks and you barrel forward stronger than ever. When you are in the wounded state of existence,  make a last ditch effort by boosting your critical successes to 3, 4, 5, 6 and 7 until you either win/lose the encounter or heal up a state of existence.",
       "Required": [[4, 1, -1]],
       "Disallowed": []
     },
@@ -681,7 +681,7 @@ const data = {
     },
     {
       "Name": "Tactical Superiority",
-      "Description": "It's not just about the body, the brain is the best tool to get out of a sticky situation. Use your tactics skill in place of a phyisical or emotional skill for one conflict resolution.",
+      "Description": "It's not just about the body, the brain is the best tool to get out of a sticky situation. Use your strategy skill in place of a phyisical or emotional skill for one conflict resolution.",
       "Required": [[4, 1, -1]],
       "Disallowed": []
     },

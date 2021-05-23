@@ -6,7 +6,7 @@ const actionAbilityCost = 10;
 const minorFlawPoints = -10;
 const majorFlawPoints = -20;
 const fatalFlawPoints = -30;
-const skillLevelMultipliers = [1, 2, 3, 4, 5];
+const skillLevelMultipliers = [1, 2, 3, 4, 5, 6, 7, 8];
 const maxState = 10;
 
 const curVersion = "v0.1";
@@ -127,20 +127,29 @@ function calculatePoints() {
     const skillGroup = trackedData.Skills[i];
     for (const skill of skillGroup) {
       let cost = data.DnaData.PointMultipliers[trackedData.DnaBalance[i] - data.DnaData.DnaMin];
-      if (skill.Level === "Average") {
+      if (skill.Level === "Novice") {
         cost *= skillLevelMultipliers[0];
       }
-      else if (skill.Level === "Talented") {
+      else if (skill.Level === "Intermediate") {
         cost *= skillLevelMultipliers[1];
       }
-      else if (skill.Level === "Elite") {
+      else if (skill.Level === "Competent") {
         cost *= skillLevelMultipliers[2];
       }
-      else if (skill.Level === "Super") {
+      else if (skill.Level === "Proficient") {
         cost *= skillLevelMultipliers[3];
       }
-      else if (skill.Level === "Incredible") {
+      else if (skill.Level === "Expert") {
         cost *= skillLevelMultipliers[4];
+      }
+      else if (skill.Level === "Elite") {
+        cost *= skillLevelMultipliers[5];
+      }
+      else if (skill.Level === "Super") {
+        cost *= skillLevelMultipliers[6];
+      }
+      else if (skill.Level === "Incredible") {
+        cost *= skillLevelMultipliers[7];
       }
 
       totalPoints += cost;
