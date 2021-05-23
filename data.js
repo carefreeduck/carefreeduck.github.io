@@ -345,7 +345,7 @@ const data = {
         },
         {
           "Name": "Aesthetics",
-          "Description": "The physical appearance of your character."
+          "Description": "The physical appearance of your character, used in conflict versus willpower. If the opponent fails then they are attracted to your character."
         },
         {
           "Name": "Senses",
@@ -457,32 +457,32 @@ const data = {
   "Abilities": [
     [
       {
-        "Name": "Precision Strike",
-        "Description": "Find a weak spot on your opponent and use the difference in skill contest between you and the oppoent as extra damage by targeting their weakenss. Alternatively prevent your opponent from doing damage this round by targeting their ability to attack. Maybe by hitting their weapon hand, or stunning them with a smash to the nose.",
-        "Required": [[4, 1, -1]],
+        "Name": "Success At All Costs",
+        "Description": "Sacrifice a state of existence to do triple damage.",
+        "Required": [],
         "Disallowed": []
       },
       {
-        "Name": "Honed Reflexes",
-        "Description": "Through training, cybernetics, magic or super powers you have reflexes beyond normal skills and rarely make mistakes. Reroll a physical conflict roll.",
+        "Name": "Disengage",
+        "Description": "Get out of a conflict situation when you roll +4 on your skill check. Forgo your damage to the opponent, as you are leaving the altercation.",
         "Required": [],
         "Disallowed": []
       },
       {
         "Name": "Trick Shot",
         "Description": "Reduce your physical skill by 4; triple your damage.",
-        "Required": [[1, 1, -1]],
-        "Disallowed": [[4, 0, -1]]
-      },
-      {
-        "Name": "Dig Down Deep",
-        "Description": "At incredible moments of stress a person can look deep inside and muster up physicality far greater than they are normally capable of. Perform a physical skill one tier higher for the rest of the conflict encounter.",
-        "Required": [[4, 1, 2]],
+        "Required": [],
         "Disallowed": []
       },
       {
-        "Name": "Inspiring Feat",
-        "Description": "You perform a physical feat at such an amazing skill level you gain confidence like never before. After successfully rolling any physical skill in a conflict use this ability to move yourself up an state of existence.",
+        "Name": "Over Exertion",
+        "Description": "Roll 2 damage dice instead of 1 and take half the damage to yourself. ",
+        "Required": [],
+        "Disallowed": []
+      },
+      {
+        "Name": "Multitask",
+        "Description": "Use 2 points (up to 6) to reduce 1 point (up to 3) of damage to another teammate (as many as you have points to distribute)",
         "Required": [],
         "Disallowed": []
       },
@@ -495,116 +495,196 @@ const data = {
       {
         "Name": "Guardian",
         "Description": "Instead of causing damage, use your damage role and deduct it from another party member's skill roll.",
-        "Required": [[3, 0, -1]],
-        "Disallowed": []
-      },
-      {
-        "Name": "Tie 'em up",
-        "Description": "Grab 'em in a bear hug, hog tie him with a lassoo, or wrap 'em up in magic vines! You can prevent your opponent from doing any physical damage this round. You do your normal damage and the opponent's difficulty skill is reduced by 1.",
         "Required": [],
         "Disallowed": []
       }
     ],
     [
       {
-        "Name": "Daredevil",
-        "Description": "Automatically succeed in a conflict round when the skill level is higher than yours.",
+        "Name": "Success At All Costs",
+        "Description": "Sacrifice a state of existence to do triple damage.",
         "Required": [],
-        "Disallowed": [[4, 0, 0], [0, 1, -1]]
-      },
-      {
-        "Name": "Gut Feeling",
-        "Description": "I got a bad feeling about this, my spidey senses are tingling, i'm going with my gut on this one. Use this ability to get a read on a situation that isn't obvious. The GM can tell you if there is impending danger, someone isn't being honest, or a set up is coming!",
-        "Required": [[4, 0, -1]],
-        "Disallowed": [[0, 1, 0]]
-      },
-      {
-        "Name": "Wink and a Smile",
-        "Description": "Automatically pass a social conflict check.",
-        "Required": [[2, 0, -1]],
-        "Disallowed": [[4, 0, -1]]
-      },
-      {
-        "Name": "Never Give up, Never Surrender",
-        "Description": "In one last dire attempt to persevere, your emotional resilience peaks and you barrel forward stronger than ever. If you have 2 hits left or less you can make a last ditch effort and boost your critical successes to 3, 4, 5 an 6 until you either lose the encounter or heal up to 3 hits.",
-        "Required": [[4, 1, -1]],
         "Disallowed": []
       },
       {
-        "Name": "Inspiring Speach",
-        "Description": "Rousing your troops with such verbal conviction that their moral surges! Perform a speech before any conflict with the leadership skill and move all other party members up a state of existence.",
+        "Name": "Disengage",
+        "Description": "Get out of a conflict situation when you roll +4 on your skill check. Forgo your damage to the opponent, as you are leaving the altercation.",
         "Required": [],
-        "Disallowed": [[2, 1, 3]]
+        "Disallowed": []
+      },
+      {
+        "Name": "Unorthodox Appeal",
+        "Description": "Reduce your emotional skill by 4; roll 2 damage dice",
+        "Required": [],
+        "Disallowed": []
+      },
+      {
+        "Name": "Over Exertion",
+        "Description": "Roll 2 damage dice instead of 1 and take half the damage to yourself. ",
+        "Required": [],
+        "Disallowed": []
+      },
+      {
+        "Name": "Multitask",
+        "Description": "Use 2 points (up to 6) to reduce 1 point (up to 3) of damage to another teammate (as many as you have points to distribute)",
+        "Required": [],
+        "Disallowed": []
       },
       {
         "Name": "Inner Peace",
-        "Description": "Instead of causing damage, use your damage role and deduct it from your skill roll.",
+        "Description": "Instead of causing damage on a  successful roll, use the damage to reduce the damage of a single party member.",
         "Required": [],
         "Disallowed": []
       },
       {
         "Name": "Shut up! That's my friend",
-        "Description": "Instead of causing damage, use your damage role and deduct it from another party member's skill roll.",
-        "Required": [[3, 0, -1]],
-        "Disallowed": []
-      },
-      {
-        "Name": "RAGE!!!",
-        "Description": "Lose all sense of control and do ultimate destruction!! Multiply your damage die by 5 and apply it to your opponent. Also take double your pre multiplied damage as self harm. ",
-        "Required": [[4, 0, -1]],
+        "Description": "Instead of causing damage on a successful roll, use the damage to boost the roll of a party memeber using the same skill.",
+        "Required": [],
         "Disallowed": []
       }
     ],
     [
       {
-        "Name": "Tactical Superiority",
-        "Description": "It's not just about the body, the brain is the best tool to get out of a sticky situation. Use your tactics skill in place of a phyisical or emotional skill for one round.",
-        "Required": [[4, 1, -1]],
+        "Name": "Success At All Costs",
+        "Description": "Sacrifice a state of existence to do triple damage.",
+        "Required": [],
         "Disallowed": []
       },
       {
-        "Name": "Deductive Detective",
-        "Description": "Solve a missing piece of a puzzle, situation or any logical problem like finding a missing person, murderer, combination.",
-        "Required": [[1, 0, -1]],
+        "Name": "Disengage",
+        "Description": "Get out of a conflict situation when you roll +4 on your skill check. Forgo your damage to the opponent, as you are leaving the altercation.",
+        "Required": [],
         "Disallowed": []
       },
       {
-        "Name": "Inductive Detective",
-        "Description": "You can predict the future! Well, it feels that way with enough data. If you can spend a reasonable amount of time researching a topic, roll against an intelligence skill to get an idea of what will happen in that particular field.",
-        "Required": [[1, 0, -1]],
-        "Disallowed": []
-      },
-      {
-        "Name": "Outside the Box Thinking",
-        "Description": "You have a knack for perceiving things differently and finding an opportunity when there appears to be none. Switch up to 3 dice outcomes with anyone on the table.",
-        "Required": [[0, 0, 0]],
-        "Disallowed": [[1, 0, 0]]
-      },
-      {
-        "Name": "Inspiring Maneuver",
-        "Description": "Position yourself strategically, whether it be in a physical or intellectual conflict in such  magnificent way it raises one of your party members of your choosing up a state of existence.",
+        "Name": "Twist of the Tongue",
+        "Description": "Reduce your intellectual skill by 4; roll 2 damage dice",
         "Required": [],
         "Disallowed": []
       },
       {
         "Name": "My Mind: Impenetrable",
-        "Description": "Instead of causing damage, use your damage role and deduct it from your skill roll.",
+        "Description": "Instead of causing damage on a  successful roll, use the damage to reduce the damage of a single party member.",
         "Required": [],
         "Disallowed": []
       },
       {
         "Name": "Apes Together Strong",
-        "Description": "Instead of causing damage, use your damage role and deduct it from another party member's skill roll.",
-        "Required": [[3, 0, -1]],
+        "Description": "Instead of causing damage on a successful roll, use the damage to boost the roll of a party memeber using the same skill.",
+        "Required": [],
         "Disallowed": []
       },
       {
-        "Name": "Kansas City Shuffle",
-        "Description": "At any time in any conflict you and your party may retreat from battle through a magnificient trick, forethought and planning, or strategic maneuvre.",
+        "Name": "Over Exertion",
+        "Description": "Roll 2 damage dice instead of 1 and take half the damage to yourself. ",
+        "Required": [],
+        "Disallowed": []
+      },
+      {
+        "Name": "Multitask",
+        "Description": "Use 2 points (up to 6) to reduce 1 point (up to 3) of damage to another teammate (as many as you have points to distribute)",
         "Required": [],
         "Disallowed": []
       }
     ]
+  ],
+  "Specials": [
+    {
+      "Name": "Tie 'em up",
+      "Description": "Grab 'em in a bear hug, hog tie him with a lassoo, or wrap 'em up in magic vines! You can prevent your opponent from doing any physical damage this round. You do your normal damage and the opponent's difficulty skill is reduced by 1.",
+      "Required": [],
+      "Disallowed": []
+    },
+    {
+      "Name": "Honed Reflexes",
+      "Description": "Through training, cybernetics, magic or super powers you have reflexes beyond normal skills and rarely make mistakes. Reroll up to 3 physical conflict rolls.",
+      "Required": [],
+      "Disallowed": []
+    },
+    {
+      "Name": "Dig Down Deep",
+      "Description": "At incredible moments of stress a person can look deep inside and muster up physicality far greater than they are normally capable of. Perform a physical skill one tier higher for the rest of the conflict encounter.",
+      "Required": [[4, 1, 2]],
+      "Disallowed": []
+    },
+    {
+      "Name": "Inspiring Feat",
+      "Description": "You perform a physical feat at such an amazing sill level you gain confidence like never before. After successfully rolling a single physical skill in a conflict use this ability to move yourself up a state of existence. All other party members get +1 to their skill check.",
+      "Required": [],
+      "Disallowed": []
+    },
+    {
+      "Name": "RAGE!!!",
+      "Description": "Lose all sense of control and do ultimate destruction!! Multiply your damage die by 5 and apply it to your opponent. Also take double your pre multiplied damage as self harm.",
+      "Required": [[4, 0, -1]],
+      "Disallowed": []
+    },
+    {
+      "Name": "Daredevil",
+      "Description": "Automatically succeed in a conflict round when the skill level is higher than your skill's level.",
+      "Required": [],
+      "Disallowed": [[4, 0, 0], [0, 1, -1]]
+    },
+    {
+      "Name": "Gut Feeling",
+      "Description": "I got a bad feeling about this, my spidey senses are tingling, i'm going with my gut on this one. Use this ability to get a read on a situation that isn't obvious. The GM can tell you if there is impending danger, someone isn't being honest, or a set up is coming!",
+      "Required": [[4, 0, -1]],
+      "Disallowed": [[0, 1, 2]]
+    },
+    {
+      "Name": "Wink and a Smile",
+      "Description": "Automatically pass a social conflict check.",
+      "Required": [[2, 0, -1]],
+      "Disallowed": [[4, 0, -1]]
+    },
+    {
+      "Name": "Never Give up, Never Surrender",
+      "Description": "In one last dire attempt to persevere, your emotional resilience peaks and you barrel forward stronger than ever. When you are in the wounded state of existence,  make a last ditch effort by boosting your critical successes to 3, 4, 5, 6 and 7 until you either win/lose the encounter or heal up a state of existence.",
+      "Required": [[4, 1, -1]],
+      "Disallowed": []
+    },
+    {
+      "Name": "Inspiring Speech",
+      "Description": "Rousing your troops with such verbal conviction that their morale surges! Roll for a personal success vs skill and if successful perform a speech before any conflict with the leadership skill and move all other party members up a state of existence.",
+      "Required": [],
+      "Disallowed": [[2, 1, -1]]
+    },
+    {
+      "Name": "Kansas City Shuffle",
+      "Description": "At any time in any conflict you and your party may retreat from battle through a magnificient trick, forethought and planning, or strategic maneuvre.",
+      "Required": [],
+      "Disallowed": []
+    },
+    {
+      "Name": "Inspiring Maneuver",
+      "Description": "Position yourself strategically, whether it be in a physical or intellectual conflict in such  magnificent way it raises one of your party members of your choosing up to healthy state of existence. All party members receive +1 to their skill check.",
+      "Required": [],
+      "Disallowed": []
+    },
+    {
+      "Name": "Outside the Box Thinking",
+      "Description": "You have a knack for perceiving things differently and finding an opportunity when there appears to be none. Switch up to 3 dice outcomes with anyone on the table.",
+      "Required": [[0, 0, 0]],
+      "Disallowed": [[1, 0, 0]]
+    },
+    {
+      "Name": "Deductive Detective",
+      "Description": "Solve a missing piece of a puzzle, situation or any logical problem like finding a missing person, murderer, combination.",
+      "Required": [[1, 0, -1]],
+      "Disallowed": []
+    },
+    {
+      "Name": "Inductive Detective",
+      "Description": "You can predict the future! Well, it feels that way with enough data. If you can spend a reasonable amount of time researching a topic, get an idea of what will happen.",
+      "Required": [[1, 0, -1]],
+      "Disallowed": []
+    },
+    {
+      "Name": "Tactical Superiority",
+      "Description": "It's not just about the body, the brain is the best tool to get out of a sticky situation. Use your strategy skill in place of a phyisical or emotional skill for one conflict resolution.",
+      "Required": [[4, 1, -1]],
+      "Disallowed": []
+    },
   ],
   "Motives": [
     {"Motive": "CUSTOM", "Link": ""},

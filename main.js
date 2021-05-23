@@ -6,7 +6,7 @@ const actionAbilityCost = 10;
 const minorFlawPoints = -10;
 const majorFlawPoints = -20;
 const fatalFlawPoints = -30;
-const skillLevelMultipliers = [1, 2, 3, 4, 5];
+const skillLevelMultipliers = [1, 2, 3, 4, 5, 6, 7, 8];
 const maxState = 10;
 
 const curVersion = "v0.1";
@@ -34,9 +34,16 @@ let defData = {
   "DnaBalance": [0, 0, 0],
   "Skills": [[], [], []],
   "Abilities": [],
+  "Specials": [],
   "MotiveType": 0,
   "MotiveDesc": "",
   "MotiveRes": "",
+  "SecMotiveType": 0,
+  "SecMotiveDesc": "",
+  "SecMotiveRes": "",
+  "Sec2MotiveType": 0,
+  "Sec2MotiveDesc": "",
+  "Sec2MotiveRes": "",
   "CharBio": "",
   "CharExtBio": "",
   "Items": [],
@@ -92,9 +99,16 @@ function migrateTrackedData(data) {
   migrateProperty(data, "DnaBalance");
   migrateProperty(data, "Skills");
   migrateProperty(data, "Abilities");
+  migrateProperty(data, "Specials");
   migrateProperty(data, "MotiveType");
   migrateProperty(data, "MotiveDesc");
   migrateProperty(data, "MotiveRes");
+  migrateProperty(data, "SecMotiveType");
+  migrateProperty(data, "SecMotiveDesc");
+  migrateProperty(data, "SecMotiveRes");
+  migrateProperty(data, "Sec2MotiveType");
+  migrateProperty(data, "Sec2MotiveDesc");
+  migrateProperty(data, "Sec2MotiveRes");
   migrateProperty(data, "CharBio");
   migrateProperty(data, "CharExtBio");
   migrateProperty(data, "Items");
@@ -125,20 +139,29 @@ function calculatePoints() {
     const skillGroup = trackedData.Skills[i];
     for (const skill of skillGroup) {
       let cost = data.DnaData.PointMultipliers[trackedData.DnaBalance[i] - data.DnaData.DnaMin];
-      if (skill.Level === "Average") {
+      if (skill.Level === "Novice") {
         cost *= skillLevelMultipliers[0];
       }
-      else if (skill.Level === "Talented") {
+      else if (skill.Level === "Intermediate") {
         cost *= skillLevelMultipliers[1];
       }
-      else if (skill.Level === "Elite") {
+      else if (skill.Level === "Competent") {
         cost *= skillLevelMultipliers[2];
       }
-      else if (skill.Level === "Super") {
+      else if (skill.Level === "Proficient") {
         cost *= skillLevelMultipliers[3];
       }
-      else if (skill.Level === "Incredible") {
+      else if (skill.Level === "Expert") {
         cost *= skillLevelMultipliers[4];
+      }
+      else if (skill.Level === "Elite") {
+        cost *= skillLevelMultipliers[5];
+      }
+      else if (skill.Level === "Super") {
+        cost *= skillLevelMultipliers[6];
+      }
+      else if (skill.Level === "Incredible") {
+        cost *= skillLevelMultipliers[7];
       }
 
       totalPoints += cost;
@@ -176,6 +199,14 @@ function buildMcs() {
   $("#mcsMotive").html(data.Motives[trackedData.MotiveType].Motive);
   $("#mcsMotiveDesc").html(trackedData.MotiveDesc);
   $("#mcsMotiveRes").html(trackedData.MotiveRes);
+
+  $("#mcsSecMotive").html(data.Motives[trackedData.SecMotiveType].Motive);
+  $("#mcsSecMotiveDesc").html(trackedData.SecMotiveDesc);
+  $("#mcsSecMotiveRes").html(trackedData.SecMotiveRes);
+
+  $("#mcsSec2Motive").html(data.Motives[trackedData.Sec2MotiveType].Motive);
+  $("#mcsSec2MotiveDesc").html(trackedData.Sec2MotiveDesc);
+  $("#mcsSec2MotiveRes").html(trackedData.Sec2MotiveRes);
 
   $("#mcsPers").html("");
   for (let i = 0; i < trackedData.PersonalityData.length; i++) {
@@ -309,6 +340,21 @@ function buildMcs() {
   }
   else {
     $("#mcsIntAbilities").html('<small class="text-secondary">No Abilities</small>');
+  }
+
+  $("#mcsSpecials").html("");
+  if (trackedData.Specials.length > 0) {
+    const specials = trackedData.Specials;
+    let cont = "";
+    cont += '<ul>';
+    for (const special of specials) {
+      cont += '<li>' + data.Specials[special.Index].Name + '</li>';
+    }
+    cont += '</ul>';
+    $("#mcsSpecials").html(cont);
+  }
+  else {
+    $("#mcsSpecials").html('<small class="text-secondary">No Specials</small>');
   }
 
   $("#mcsItems").html(trackedData.Items.length > 0 ? "" : "No Items");
@@ -734,6 +780,39 @@ function deleteSkill(type, index) {
   fillDnaSkillOptions(typeIndex);
 }
 
+function checkSelectedSpecials() {
+  let specials = trackedData.Specials;
+  let altered = [];
+  for (let i = 0; i < specials.length; i++) {
+    const selected = specials[i];
+    const special = data.Specials[selected.Index];
+    let isSatisfied = true;
+    for (const req of special.Required) {
+      if (!isPersTraitPicked(req[0], req[1], req[2])) {
+        isSatisfied = false;
+        break;
+      }
+    }
+    
+    if (isSatisfied) {
+      for (const dis of special.Disallowed) {
+        if (isPersTraitPicked(dis[0], dis[1], dis[2])) {
+          isSatisfied = false;
+          break;
+        }
+      }
+    }
+    
+    if (isSatisfied) {
+      altered.push(selected);
+    }
+  }
+
+  if (altered.length !== specials.length) {
+    onTrackedDataChange("Specials", altered);
+  }
+}
+
 function checkSelectedAbilities() {
   let abilities = trackedData.Abilities;
   let altered = [];
@@ -765,6 +844,32 @@ function checkSelectedAbilities() {
   if (altered.length !== abilities.length) {
     onTrackedDataChange("Abilities", altered);
   }
+}
+
+function fillSelectedSpecials() {
+  const id = "#selectedSpecials";
+  $(id).html("");
+  const specials = trackedData.Specials;
+  for (let i = 0; i < specials.length; i++) {
+    const selected = specials[i];
+    const special = data.Specials[selected.Index];
+    let specialCont = "";
+    specialCont += '<div class="col-sm-6 col-md-4">';
+    specialCont += '<div class="mt-1 card">';
+    specialCont += '<div class="card-body p-2">';
+    specialCont += '<h6 class="card-title">';
+    specialCont += '<button class="btn btn-sm btn-danger delete-button" onclick="deleteSpecial(' + i + ')"><i class="bi-trash"></i></button>';
+    specialCont += ' ' + special.Name + ' ';
+    specialCont += '<button class="btn btn-sm btn-light expand-button"><i class="bi-chevron-bar-expand"></i></button>';
+    specialCont += '</h6>';
+    specialCont += '<small class="long-desc shortened-desc">' + special.Description + '</small>';
+    specialCont += '</div>';
+    specialCont += '</div>';
+    specialCont += '</div>';
+    $(id).append(specialCont);
+  }
+
+  bindAbilityEvents();
 }
 
 function fillSelectedAbilities() {
@@ -809,6 +914,91 @@ function isPersTraitPicked(persIndex, optionIdex, traitIndex) {
   }
   
   return false;
+}
+
+function fillSpecials() {
+  const id = "#specialsOptions";
+  
+  $(id).html("");
+  const specials = trackedData.Specials;
+  for (let i = 0; i < data.Specials.length; i++) {
+    let isSelected = false;
+    for (const selected of specials) {
+      if (i === selected.Index) {
+        isSelected = true;
+        break;
+      }
+    }
+    
+    if (isSelected) {
+      continue;
+    }
+
+    const special = data.Specials[i];
+    let isSatisfied = true;
+    for (const req of special.Required) {
+      if (!isPersTraitPicked(req[0], req[1], req[2])) {
+        isSatisfied = false;
+        break;
+      }
+    }
+    
+    if (isSatisfied) {
+      for (const dis of special.Disallowed) {
+        if (isPersTraitPicked(dis[0], dis[1], dis[2])) {
+          isSatisfied = false;
+          break;
+        }
+      }
+    }
+
+    let specialCont = "";
+    specialCont += '<div class="col-sm-6 col-md-4">';
+    specialCont += '<div class="mt-1 card">';
+    specialCont += '<div class="card-body p-2">';
+    specialCont += '<h6 class="card-title">';
+    specialCont += '<button class="btn btn-sm btn-light add-button" ' + (isSatisfied ? "" : "disabled") + ' onclick="addSpecial(' + i + ')"><i class="bi-plus-square"></i></button>';
+    specialCont += ' ' + special.Name + ' ';
+    if (!isSatisfied) {
+      specialCont += '<small class="text-secondary">Requirements not met</small>';
+    }
+    specialCont += '<button class="btn btn-sm btn-light expand-button"><i class="bi-chevron-bar-expand"></i></button>';
+    specialCont += '</h6>';
+    specialCont += '<small class="long-desc shortened-desc">' + special.Description + '</small>';
+    specialCont += '<hr class="m-0" />';
+
+    for (const req of special.Required) {
+      let reqCont = "";
+      if (req[2] < 0) {
+        reqCont = data.PersTraits[req[0]].Options[req[1]].Name;
+      }
+      else {
+        reqCont = data.PersTraits[req[0]].Options[req[1]].Abilities[req[2]].Name;
+      }
+
+      specialCont += '<small class="text-primary me-2">' + reqCont + '</small> ';
+    }
+    
+    for (const dis of special.Disallowed) {
+      let disCont = "";
+      if (dis[2] < 0) {
+        disCont = data.PersTraits[dis[0]].Options[dis[1]].Name;
+      }
+      else {
+        disCont = data.PersTraits[dis[0]].Options[dis[1]].Abilities[dis[2]].Name;
+      }
+
+      specialCont += '<small class="text-danger me-2">' + disCont + '</small> ';
+    }
+    
+    specialCont += '&nbsp;';
+    specialCont += '</div>';
+    specialCont += '</div>';
+    specialCont += '</div>';
+    $(id).append(specialCont);
+  }
+
+  bindAbilityEvents();
 }
 
 function fillAbilities() {
@@ -864,7 +1054,6 @@ function fillAbilities() {
       abilityCont += '<hr class="m-0" />';
 
       for (const req of ability.Required) {
-        let isValid = false;
         let reqCont = "";
         if (req[2] < 0) {
           reqCont = data.PersTraits[req[0]].Options[req[1]].Name;
@@ -905,6 +1094,22 @@ function bindAbilityEvents() {
   });
 }
 
+function addSpecial(index) {
+  let specials = trackedData.Specials;
+  specials.push({"Index":index});
+  onTrackedDataChange("Specials", specials);
+  fillSelectedSpecials();
+  fillSpecials();
+}
+
+function deleteSpecial(index) {
+  let specials = trackedData.Specials;
+  specials.splice(index, 1);
+  onTrackedDataChange("Specials", specials);
+  fillSelectedSpecials();
+  fillSpecials();
+}
+
 function addAbility(type, index) {
   let abilities = trackedData.Abilities;
   abilities.push({"Type":type, "Index":index});
@@ -929,6 +1134,22 @@ function fillMotives() {
   }
   
   $("#motiveType").html(options);
+
+  options = "";
+  for (let i = 0; i < data.Motives.length; i++) {
+    const motive = data.Motives[i];
+    options += '<option ' + (trackedData.SecMotiveType === i ? "selected" : "") + ' >' + motive.Motive + '</option>'
+  }
+  
+  $("#secMotiveType").html(options);
+
+  options = "";
+  for (let i = 0; i < data.Motives.length; i++) {
+    const motive = data.Motives[i];
+    options += '<option ' + (trackedData.Sec2MotiveType === i ? "selected" : "") + ' >' + motive.Motive + '</option>'
+  }
+  
+  $("#sec2MotiveType").html(options);
 }
 
 function fillItems() {
@@ -995,6 +1216,8 @@ function showPage(number, onEnd) {
   if (number === 5) {
     fillSelectedAbilities();
     fillAbilities();
+    fillSelectedSpecials();
+    fillSpecials();
   }
   else if (number === 8) {
     buildMcs();
@@ -1222,6 +1445,7 @@ function onTrackedDataChange(key, value) {
   
   if (key === "PersonalityData") {
     checkSelectedAbilities();
+    checkSelectedSpecials();
   }
   else if (key === "CharImgUrl") {
     placeImage();
@@ -1251,6 +1475,8 @@ function buildFromData() {
 
   fillSelectedAbilities();
   fillAbilities();
+  fillSelectedSpecials();
+  fillSpecials();
   
   fillMotives();
 

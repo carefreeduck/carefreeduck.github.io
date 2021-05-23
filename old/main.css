@@ -1,0 +1,119 @@
+.customization-container {
+  opacity: 0.0;
+}
+
+.customization-page {
+  /* padding-top: 60px; */
+  max-width: 12.5%;
+}
+
+.page-top-container {
+  overflow-x: hidden;
+}
+
+.page-container {
+  width: 800%;
+  max-width: 800%;
+}
+
+#loadingOverlay {
+  display: table;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #666666;
+  z-index: 10000;
+  opacity: 0.5;
+  text-align: center;
+}
+
+#loadingOverlay > h1 {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.trait-card {
+}
+
+.hidden-at-start {
+  display: none;
+}
+
+.toggle-desc {
+  overflow: hidden;
+  display: none;
+}
+
+.trait-help {
+  padding-top: .125em;
+  font-size: .875em;
+  color: #6c757d;
+}
+
+.delete-button {
+  padding-top: .1em;
+  padding-bottom: .1em;
+}
+
+.add-button {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.expand-button {
+  padding-top: 0;
+  padding-bottom: 0;
+  position: absolute;
+  right: 10px;
+  margin-top: 3px;
+}
+
+.expand-abilities-button {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.flaw-name-td > button {
+  position: absolute;
+}
+
+.flaw-name-td > span {
+  margin-left: 40px;
+}
+
+.shortened-desc {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 95%;
+  text-overflow: ellipsis;
+}
+
+.disabled-card {
+  border-color: #dd0000;
+}
+
+.state-button {
+  width: 20px;
+  text-align: center;
+  padding: 0;
+}
+
+.state-bar {
+  margin-top: 4px;
+  height: 20px;
+}
+
+#stateBar0 {
+  background-color: #FBC647;
+}
+
+#stateBar1 {
+  background-color: #B747FB;
+}
+
+#stateBar2 {
+  background-color: #36A618;
+}

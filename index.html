@@ -206,8 +206,11 @@
                   <div class="col-sm-4">
                     <label for="dnaSkillLevel" class="form-label">Level</label>
                     <select id="dnaSkillLevel" class="form-select" aria-label="Level">
-                      <option>Average</option>
-                      <option>Talented</option>
+                      <option>Novice</option>
+                      <option>Intermediate</option>
+                      <option>Competent</option>
+                      <option>Proficient</option>
+                      <option>Expert</option>
                       <option>Elite</option>
                       <option>Super</option>
                       <option>Incredible</option>
@@ -226,8 +229,8 @@
           </div>
           <div class="col customization-page">
             <div id="row5" class="customization-container container">
-              <h3>Action Abilities</h3>
-              <p>This section lists all your action abilities by conflict state. For more detailed information please see the Skills & Abilities sheet such as descriptions of the actions as well as their prerequisites.</p>
+              <h3>Maneuvers</h3>
+              <p>Maneuvers are actions you can take to supplement or change your rolls during conflict resolution. These are typically actions that aren't more powerful or weaker, but simply change the function of your roll to better suite the situation. The more maneuvers your character has the more adaptable they are in conflict but the weaker they are overall as there are fewer points put into specific areas. Maneuvers offer a choice between focused power and adaptability. The overal performance of your character will be dependent on playstyle. Choosing maneuvers will often be based on your character build and the story they are in.</p>
               <div class="mb-3">
                 <label class="form-label">Selected Abilities</label>
                 <hr class="m-0" />
@@ -257,12 +260,28 @@
                 <hr class="m-0" />
               </div>
               <div id="intAbilityOptions" class="row mb-3 ability-options"></div>
+              <h3>Specials</h3>
+              <p>Specials are the big moves your characters can perform. They are heroic moments where you can really shine. You can only use them once per session becuase they are so powerful and story altering. Most GM's will limit you to 1 special.</p>
+              <div class="mb-3">
+                <label class="form-label">Selected Specials</label>
+                <hr class="m-0" />
+              </div>
+              <div id="selectedSpecials" class="row mb-3"></div>
+              <div class="mb-3">
+                <label class="form-label">
+                  Available Specials
+                  <button class="btn btn-sm btn-light expand-abilities-button" onclick="toggle('#specialsOptions')"><i class="bi-chevron-bar-expand"></i></button>
+                </label>
+                <hr class="m-0" />
+              </div>
+              <div id="specialsOptions" class="row mb-3 ability-options"></div>
             </div>
           </div>
           <div class="col customization-page">
             <div id="row6" class="customization-container container">
               <h3>Motives</h3>
               <p>This section describes motives of of your character</p>
+              <h3>Primary Motivation</h3>
               <div class="mb-3">
                 <label for="motiveType" class="form-label">Motivation Type</label>
                 <select id="motiveType" class="form-select tracked-data" aria-label="Motivation Type" data-sdtarget="MotiveType"></select>
@@ -274,6 +293,32 @@
               <div class="mb-3">
                 <label for="motiveRes" class="form-label">Resolution</label>
                 <textarea id="motiveRes" class="form-control tracked-data" aria-label="Resolution" data-sdtarget="MotiveRes"></textarea>
+              </div>
+              <h3>Secondary Motivations</h3>
+              <div class="mb-3">
+                <label for="secMotiveType" class="form-label">Motivation Type</label>
+                <select id="secMotiveType" class="form-select tracked-data" aria-label="Motivation Type" data-sdtarget="SecMotiveType"></select>
+              </div>
+              <div class="mb-3">
+                <label for="secMotiveDesc" class="form-label">Description</label>
+                <textarea id="secMotiveDesc" class="form-control tracked-data" aria-label="Description" data-sdtarget="SecMotiveDesc"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="secMotiveRes" class="form-label">Resolution</label>
+                <textarea id="secMotiveRes" class="form-control tracked-data" aria-label="Resolution" data-sdtarget="SecMotiveRes"></textarea>
+              </div>
+              <hr class="m-1">
+              <div class="mb-3">
+                <label for="sec2MotiveType" class="form-label">Motivation Type</label>
+                <select id="sec2MotiveType" class="form-select tracked-data" aria-label="Motivation Type" data-sdtarget="Sec2MotiveType"></select>
+              </div>
+              <div class="mb-3">
+                <label for="sec2MotiveDesc" class="form-label">Description</label>
+                <textarea id="sec2MotiveDesc" class="form-control tracked-data" aria-label="Description" data-sdtarget="Sec2MotiveDesc"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="sec2MotiveRes" class="form-label">Resolution</label>
+                <textarea id="sec2MotiveRes" class="form-control tracked-data" aria-label="Resolution" data-sdtarget="Sec2MotiveRes"></textarea>
               </div>
             </div>
           </div>
@@ -409,6 +454,36 @@
                         <div class="col"><small id="mcsMotiveRes" class="text-secondary"></small></div>
                       </div>
                     </div>
+                    <div class="col-12">
+                      <hr class="m-0" />
+                      <div class="row">
+                        <div class="col-12 col-md-3 col-lg-2">Motive</div>
+                        <div class="col"><small id="mcsSecMotive" class="text-secondary"></small></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-md-3 col-lg-2">Description</div>
+                        <div class="col"><small id="mcsSecMotiveDesc" class="text-secondary"></small></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-md-3 col-lg-2">Resolution</div>
+                        <div class="col"><small id="mcsSecMotiveRes" class="text-secondary"></small></div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <hr class="m-0" />
+                      <div class="row">
+                        <div class="col-12 col-md-3 col-lg-2">Motive</div>
+                        <div class="col"><small id="mcsSec2Motive" class="text-secondary"></small></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-md-3 col-lg-2">Description</div>
+                        <div class="col"><small id="mcsSec2MotiveDesc" class="text-secondary"></small></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-md-3 col-lg-2">Resolution</div>
+                        <div class="col"><small id="mcsSec2MotiveRes" class="text-secondary"></small></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -435,7 +510,7 @@
                   <div id="mcsIntSkills"></div>
                 </div>
               </div>
-              <h5>Action Abilities</h5>
+              <h5>Maneuvers</h5>
               <div class="row row-cols-3 mb-3">
                 <div class="col-12 col-sm">
                   <h5>Physicality</h5>
@@ -451,6 +526,13 @@
                   <h5>Intellect</h5>
                   <hr class="m-0" />
                   <div id="mcsIntAbilities"></div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <h5>Specials</h5>
+                  <hr class="m-0" />
+                  <div id="mcsSpecials"></div>
                 </div>
               </div>
               <h4>Items</h4>
