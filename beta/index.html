@@ -281,6 +281,7 @@
             <div id="row6" class="customization-container container">
               <h3>Motives</h3>
               <p>This section describes motives of of your character</p>
+              <h3>Primary Motivation</h3>
               <div class="mb-3">
                 <label for="motiveType" class="form-label">Motivation Type</label>
                 <select id="motiveType" class="form-select tracked-data" aria-label="Motivation Type" data-sdtarget="MotiveType"></select>
@@ -292,6 +293,32 @@
               <div class="mb-3">
                 <label for="motiveRes" class="form-label">Resolution</label>
                 <textarea id="motiveRes" class="form-control tracked-data" aria-label="Resolution" data-sdtarget="MotiveRes"></textarea>
+              </div>
+              <h3>Secondary Motivations</h3>
+              <div class="mb-3">
+                <label for="secMotiveType" class="form-label">Motivation Type</label>
+                <select id="secMotiveType" class="form-select tracked-data" aria-label="Motivation Type" data-sdtarget="SecMotiveType"></select>
+              </div>
+              <div class="mb-3">
+                <label for="secMotiveDesc" class="form-label">Description</label>
+                <textarea id="secMotiveDesc" class="form-control tracked-data" aria-label="Description" data-sdtarget="SecMotiveDesc"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="secMotiveRes" class="form-label">Resolution</label>
+                <textarea id="secMotiveRes" class="form-control tracked-data" aria-label="Resolution" data-sdtarget="SecMotiveRes"></textarea>
+              </div>
+              <hr class="m-1">
+              <div class="mb-3">
+                <label for="sec2MotiveType" class="form-label">Motivation Type</label>
+                <select id="sec2MotiveType" class="form-select tracked-data" aria-label="Motivation Type" data-sdtarget="Sec2MotiveType"></select>
+              </div>
+              <div class="mb-3">
+                <label for="sec2MotiveDesc" class="form-label">Description</label>
+                <textarea id="sec2MotiveDesc" class="form-control tracked-data" aria-label="Description" data-sdtarget="Sec2MotiveDesc"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="sec2MotiveRes" class="form-label">Resolution</label>
+                <textarea id="sec2MotiveRes" class="form-control tracked-data" aria-label="Resolution" data-sdtarget="Sec2MotiveRes"></textarea>
               </div>
             </div>
           </div>
@@ -425,6 +452,36 @@
                       <div class="row">
                         <div class="col-12 col-md-3 col-lg-2">Resolution</div>
                         <div class="col"><small id="mcsMotiveRes" class="text-secondary"></small></div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <hr class="m-0" />
+                      <div class="row">
+                        <div class="col-12 col-md-3 col-lg-2">Motive</div>
+                        <div class="col"><small id="mcsSecMotive" class="text-secondary"></small></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-md-3 col-lg-2">Description</div>
+                        <div class="col"><small id="mcsSecMotiveDesc" class="text-secondary"></small></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-md-3 col-lg-2">Resolution</div>
+                        <div class="col"><small id="mcsSecMotiveRes" class="text-secondary"></small></div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <hr class="m-0" />
+                      <div class="row">
+                        <div class="col-12 col-md-3 col-lg-2">Motive</div>
+                        <div class="col"><small id="mcsSec2Motive" class="text-secondary"></small></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-md-3 col-lg-2">Description</div>
+                        <div class="col"><small id="mcsSec2MotiveDesc" class="text-secondary"></small></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-md-3 col-lg-2">Resolution</div>
+                        <div class="col"><small id="mcsSec2MotiveRes" class="text-secondary"></small></div>
                       </div>
                     </div>
                   </div>

@@ -38,6 +38,12 @@ let defData = {
   "MotiveType": 0,
   "MotiveDesc": "",
   "MotiveRes": "",
+  "SecMotiveType": 0,
+  "SecMotiveDesc": "",
+  "SecMotiveRes": "",
+  "Sec2MotiveType": 0,
+  "Sec2MotiveDesc": "",
+  "Sec2MotiveRes": "",
   "CharBio": "",
   "CharExtBio": "",
   "Items": [],
@@ -97,6 +103,12 @@ function migrateTrackedData(data) {
   migrateProperty(data, "MotiveType");
   migrateProperty(data, "MotiveDesc");
   migrateProperty(data, "MotiveRes");
+  migrateProperty(data, "SecMotiveType");
+  migrateProperty(data, "SecMotiveDesc");
+  migrateProperty(data, "SecMotiveRes");
+  migrateProperty(data, "Sec2MotiveType");
+  migrateProperty(data, "Sec2MotiveDesc");
+  migrateProperty(data, "Sec2MotiveRes");
   migrateProperty(data, "CharBio");
   migrateProperty(data, "CharExtBio");
   migrateProperty(data, "Items");
@@ -187,6 +199,14 @@ function buildMcs() {
   $("#mcsMotive").html(data.Motives[trackedData.MotiveType].Motive);
   $("#mcsMotiveDesc").html(trackedData.MotiveDesc);
   $("#mcsMotiveRes").html(trackedData.MotiveRes);
+
+  $("#mcsSecMotive").html(data.Motives[trackedData.SecMotiveType].Motive);
+  $("#mcsSecMotiveDesc").html(trackedData.SecMotiveDesc);
+  $("#mcsSecMotiveRes").html(trackedData.SecMotiveRes);
+
+  $("#mcsSec2Motive").html(data.Motives[trackedData.Sec2MotiveType].Motive);
+  $("#mcsSec2MotiveDesc").html(trackedData.Sec2MotiveDesc);
+  $("#mcsSec2MotiveRes").html(trackedData.Sec2MotiveRes);
 
   $("#mcsPers").html("");
   for (let i = 0; i < trackedData.PersonalityData.length; i++) {
@@ -1114,6 +1134,22 @@ function fillMotives() {
   }
   
   $("#motiveType").html(options);
+
+  options = "";
+  for (let i = 0; i < data.Motives.length; i++) {
+    const motive = data.Motives[i];
+    options += '<option ' + (trackedData.SecMotiveType === i ? "selected" : "") + ' >' + motive.Motive + '</option>'
+  }
+  
+  $("#secMotiveType").html(options);
+
+  options = "";
+  for (let i = 0; i < data.Motives.length; i++) {
+    const motive = data.Motives[i];
+    options += '<option ' + (trackedData.Sec2MotiveType === i ? "selected" : "") + ' >' + motive.Motive + '</option>'
+  }
+  
+  $("#sec2MotiveType").html(options);
 }
 
 function fillItems() {
