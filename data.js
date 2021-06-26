@@ -289,6 +289,7 @@ const data = {
           "When Encountering - If your character encounters your affliction then they suffer -1 to all skill checks in that DNA category",
           "Skill Effect - This affliction affects a skill by lowering it -1",
           "Special Effect - Roll willpower check, on failure you are affected by your affliction"
+          "Restriction - Circumventing this flaw lowers your state of existence"
         ]
       },
       {
@@ -299,6 +300,7 @@ const data = {
           "When Encountering - If your character encounters your affliction then they suffer -2 to all skill checks in that DNA category",
           "Skill Effect - This affliction affects a skill by lowering it -2",
           "Special Effect - Roll willpower check at -1, on failure you are affected by your affliction"
+          "Restriction - Opposing this flaw lowers your state of existence twice"
         ]
       },
       {
@@ -309,6 +311,7 @@ const data = {
           "When Encountering - If your character encounters your affliction then they suffer -3 to all skill checks in that DNA category",
           "Skill Effect - This affliction affects a skill by lowering it -3",
           "Special Effect - Roll willpower check at -2, on failure you are affected by your affliction"
+          "Restriction - Opposing this flaw lowers your state of existence to incapacitated"
         ]
       }
     ]
