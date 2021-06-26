@@ -26,7 +26,7 @@ const data = {
             },
             {
               "Name": "No! Care killed the Cat",
-              "Description": "And satisfaction brought it back! Get extra rewards when taking risks in unfamiliar places."
+              "Description": "And satisfaction brought it back! Go up a skill category for 3 rounds when taking risks in unfamiliar places."
             },
             {
               "Name": "Progressive",
