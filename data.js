@@ -34,7 +34,7 @@ const data = {
             },
             {
               "Name": "Rock N' Rolla",
-              "Description": "Sex drugs and rock and roll!  By taking your mind off things, destressing and getting wild you're able to give yourself a break from the monotony.While this might drain other people, you gain back intellectual HP by having fun."
+              "Description": "Sex drugs and rock and roll!  By taking your mind off things, destressing and getting wild you're able to give yourself a break from the monotony.While this might drain other people, once per session you may gain a state of existence by having fun."
             }
           ],
           "CharTraits": ["Creative", "Curious", "Unorthodox", "Unpredictable", "Experimental", "Risky"]
@@ -45,7 +45,7 @@ const data = {
           "Abilities": [
             {
               "Name": "Routine Precision",
-              "Description": "You thrive in routine! Any conflict that results in 3 of the same DNA resolution in a row gives a bonus to your third roll and every one after."
+              "Description": "You thrive in routine! Any conflict where you use the same skill 3 times in a row gives a bonus to your third roll and every third roll in the streak after."
             },
             {
               "Name": "Curiosity Killed the Cat",
@@ -57,7 +57,7 @@ const data = {
             },
             {
               "Name": "Devout",
-              "Description": "By retreating back into your faith you are able to gain back the stability you've been missing and regain your thoughts. Prolonged peaceful prayer from dogmatic religions, participating in religious practices and ceremony replenish 1 ability of your choosing. Can only be used once per session."
+              "Description": "By retreating back into your faith you are able to gain back the stability you've been missing and regain your thoughts. Prolonged peaceful prayer from dogmatic religions, participating in religious practices and ceremony replenish your special, if you have more than one special, pick one to replenish. Can only be used once per session."
             }
           ],
           "CharTraits": ["Ceremonial", "Conventional", "Data-Driven", "Dogmatic", "Safe", "Unrelenting"]
@@ -75,7 +75,7 @@ const data = {
           "Abilities": [
             {
               "Name": "Zealot",
-              "Description": "Driven, disciplined, and deliberate. You will take any and all measures to achieve your goals. When working towards a goal you take reduced emotional and intellectual damage."
+              "Description": "Driven, disciplined, and deliberate. You will take any and all measures to achieve your goals. When working towards a minor motivation take one less emotional and intellectual damage per round. Conflicts must be directly related to the motivation ie. If your motivation is to find your missing daughter you would take a reduction in damage if you were finding clues to her dissapperance but not if you were helping someone that would eventually reveal a clue."
             },
             {
               "Name": "Neat",
@@ -83,11 +83,11 @@ const data = {
             },
             {
               "Name": "White Collar Man",
-              "Description": "You lived a life that brought you across the higher echelons of society. Local businessmen, nobles, priests and politicians. You know your ways around them all."
+              "Description": "You lived a life that brought you across the higher echelons of society. Local businessmen, nobles, priests and politicians, you know your ways around them all and get a bonus during Emotional and Intellectual conflicts with them."
             },
             {
               "Name": "Diplomatic",
-              "Description": "You know how to hold back and bite your tongue, respond appropriately and listen when you need to. Receive bonuses when befriending someone."
+              "Description": "You know how to hold back and bite your tongue, respond appropriately and listen when you need to. Receive a bonus when befriending someone."
             }
           ],
           "CharTraits": ["Disicplined", "Dutiful", "Stubborn", "Focused", "Ambitious", "Dependable"]
@@ -102,7 +102,7 @@ const data = {
             },
             {
               "Name": "Go With the Flow",
-              "Description": "You are used to making it up as you go and making due with what you got! Who cares if you lost your job or you're in a sticky situation. You are highly resistant to panic."
+              "Description": "You are used to making it up as you go and making due with what you got! Who cares if you lost your job or you're in a sticky situation. You are highly resistant to adverse situations."
             },
             {
               "Name": "On the Streets",
@@ -110,7 +110,7 @@ const data = {
             },
             {
               "Name": "Hakunamatata",
-              "Description": "You've got a gang. Not a violent one, just a little one. A couple of pals, maybe stoner friends, or buds down at the pub. They might not be bad ass but they don't work so you can always call them in a pinch."
+              "Description": "You've got a gang. Not a violent one, just a little one. A couple of pals, maybe stoner friends, or buds down at the pub. They might not be bad ass but they don't work so you can always call them in a pinch. They can be reasonably helpful but also are able to pick you up when you're down. If they are around, once per session they are able to pick you up when incompacited."
             }
           ],
           "CharTraits": ["Flexible", "Easy Going", "Spontaneous", "Adaptable", "Unreliable", "Laid Back"]
@@ -128,19 +128,19 @@ const data = {
           "Abilities": [
             {
               "Name": "Social Butterfly",
-              "Description": "Recharge your HP meters through social events and interactions."
+              "Description": "You are one of those people that will go out on the night and make a dozen new friends. Your character has the ability to befriend random people and strangers not in direct opposition to you. NPC's should react positively to you after a reasonable amount of time socialising with them."
             },
             {
               "Name": "Life of the Party",
-              "Description": "Receive a bonus to social skills and charm."
+              "Description": "Receive a bonus to social skills and charm when partying or in party settings."
             },
             {
               "Name": "Friends in [all] Places",
-              "Description": "You have a large network of friends in a variety of places but few close friends. It's also quite a bit easier for you to make new friends."
+              "Description": "You have a large network of friends in a variety of places. They are typically people who would like to help you if they can, but aren't close enough to make large sacrifices for your goals. The GM will rule on what is reasonable."
             },
             {
               "Name": "Empassioned Leadership",
-              "Description": "If you have time t give a speech, your party will get -1 to their first role in that conflict."
+              "Description": "If you have time to give a speech, your entire party will get a bonus to their first role in the conflict immediately following."
             }
           ],
           "CharTraits": ["Optimist", "Flamboyant", "Talkative", "Bubbly", "Gregarious", "Enthusiastic", "Assertive"]
@@ -151,19 +151,19 @@ const data = {
           "Abilities": [
             {
               "Name": "Peace in Solitude",
-              "Description": "Recharge your HP meters through solitude and quiet."
+              "Description": "By taking time for yourself, through things like mediation, solitude or other solo activities that are calm and peaceful, you are able to recharge. Once per session you can go up a state of existence if your character is able to find a few hours of peaceful time to themself."
             },
             {
               "Name": "The Pen is Mighty",
-              "Description": "Receive bonuses to any written social interactions , this can be letters, texts, prepared speeches or dialogue."
+              "Description": "Receive a bonus to any written social interactions , this can be letters, texts, prepared speeches or dialogue."
             },
             {
               "Name": "Keep your friends close",
-              "Description": "You have a small tight nit group of friends that are very loyal."
+              "Description": "You have a small tight nit group of friends that are very loyal. They often have a single skill that can be useful and called upon when needed."
             },
             {
               "Name": "Fade to the back",
-              "Description": "Through your reserved demeanor and low profile you tend to blend into crowds. Get bonuses when hiding losing a tail, avoiding being seen and other such events when in a crowd or social function."
+              "Description": "Through your reserved demeanor and low profile you tend to blend into crowds. Get a bonus when hiding, losing a tail, avoiding being seen, and other such events when in a crowd or social function."
             }
           ],
           "CharTraits": ["Quiet", "Reserved", "Shy", "Analytical", "Independent", "Reflective"]
@@ -181,11 +181,11 @@ const data = {
           "Abilities": [
             {
               "Name": "Kinship",
-              "Description": "You care for your people and they care for you. Or so it feels. Any time you sacrifice for the party you can receive emotional hp back. Sacrificing can including giving/buying gifts, taking hits for other people, putting yourself in a pricarious situation to help a team mate etc etc."
+              "Description": "You care for your people and they care for you. Or so it feels. Any big sacrifice for the party results in you gaining a state of existence. This sacrifice must be significant to the character and the GM has the final verdict. Sacrificing can including giving/buying gifts, taking hits for other people, putting yourself in a pricarious situation to help a team mate etc etc."
             },
             {
               "Name": "Lead by doing",
-              "Description": "When you lead the charge, take on risk for the group or put others before you in a conflict situation, subtract 1 to everyone else's rolls."
+              "Description": "When you lead the charge, take on risk for the group or put others before you in a conflict situation, everyone in the party receives a bonus, if you drop a state of existence, for one round."
             },
             {
               "Name": "Minimalism",
@@ -193,7 +193,7 @@ const data = {
             },
             {
               "Name": "The good in people",
-              "Description": "You care for your people and they care for you. Or so it feels. Any time you sacrifice for the party you can receive emotional hp back. Sacrificing can including giving/buying gifts, taking hits for other people, putting yourself in a pricarious situation to help a team mate etc etc."
+              "Description": "You believe people are good by nature and  are willing to trust them easily.  Take intellectual damage when trusting someone doesn't work in your favor but gain 1 XP."
             }
           ],
           "CharTraits": ["Trusting", "Straightforward", "Modest", "Altruistic", "Compliant", "Tender-Mindedness"]
@@ -212,11 +212,11 @@ const data = {
             },
             {
               "Name": "Materialism",
-              "Description": "You're desire for the material world is never ending! You derive great pleasure from acquiring things of value. From that you have a knack for making money, bartering and finding a good deal."
+              "Description": "Your desire for the material world is never ending! You derive great pleasure from acquiring things of value. From that you have a knack for making money, bartering and finding a good deal. Receive a bonus when involved in commerce conflict resolutions."
             },
             {
               "Name": "Narcisism",
-              "Description": "You are so self absorbed you just know you're better than everyone else, and you look it too! Get a bonus to physical appearance and sex appeal. Reduce the difficulty of charming someone through appearance by 4."
+              "Description": "You are so self absorbed you just know you're better than everyone else, and you look it too! Get a bonus to physical appearance and sex appeal. Reduce the difficulty of charming someone through appearance by 2."
             }
           ],
           "CharTraits": ["Cynical", "Deceitful", "Conceited", "Greedy", "Antagonistic", "Tough-Mindedness"]
@@ -246,7 +246,7 @@ const data = {
             },
             {
               "Name": "I'm my own best critic",
-              "Description": "Gain a little 1 character points when rolling a critical fail."
+              "Description": "Gain 1 xp when rolling a critical fail."
             }
           ],
           "CharTraits": ["Anxious", "Cautious", "Pessimist", "Depressed", "Jealous", "Providing", "Self-Aware", "Realistic"]
@@ -257,19 +257,19 @@ const data = {
           "Abilities": [
             {
               "Name": "Fortune Favors the bold",
-              "Description": "When this character charges forward into a situation bravely, not to be confused with recklessly, they get a bonus. This could be running after captors of a kidnap situation, rushing towards a predator that has attacked a friend, or perhaps driving onto a battlefield to pick up the wounded."
+              "Description": "When this character charges forward into a situation bravely, not to be confused with recklessly, they get a bonus for one round. This could be running after captors of a kidnap situation, rushing towards a predator that has attacked a friend, or perhaps driving onto a battlefield to pick up the wounded."
             },
             {
               "Name": "Gifted leadership",
-              "Description": "Being calm under pressure means people look to you for leadership and guidance. All leadership abilities get a bonus."
+              "Description": "Being calm under pressure means people look to you for leadership and guidance. Gain a bonus when trying to recruit NPC's to your cause."
             },
             {
               "Name": "Nerves of Steel",
-              "Description": "You don't crack under pressure! A person with this trait has a resistance to high tense situations or stress."
+              "Description": "You don't crack under pressure! A person with this trait has a resistance to high tense situations or stress. Gain a bonus on the first round of conflict involving high emotional stakes or pressure."
             },
             {
               "Name": "Emotional Rock",
-              "Description": "When reaching 0 in emotional health roll a 6 sided die. If it lands on odd, add that back to your HP."
+              "Description": "When reaching 0 in emotional health roll a 6 sided die. If it lands on odd, add that back to your HP and do not drop a state of existence."
             }
           ],
           "CharTraits": ["Calm", "Realist", "Stable", "Resilient", "Unintuitive"]
