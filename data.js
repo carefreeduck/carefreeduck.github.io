@@ -110,7 +110,7 @@ const data = {
             },
             {
               "Name": "Hakunamatata",
-              "Description": "You've got a gang. Not a violent one, just a little one. A couple of pals, maybe stoner friends, or buds down at the pub. They might not be bad ass but they don't work so you can always call them in a pinch. They can be reasonably helpful but also are able to pick you up when you're down. If they are around, once per session they are able to pick you up when incompacited."
+              "Description": "You've got a gang. Not a violent one, just a little one. A couple of pals, maybe stoner friends, or buds down at the pub. They might not be bad ass but they don't work so you can always call them in a pinch. They can be reasonably helpful but also are able to pick you up when you're down. If they are around, once per session they are able to pick you up when incapacitated."
             }
           ],
           "CharTraits": ["Flexible", "Easy Going", "Spontaneous", "Adaptable", "Unreliable", "Laid Back"]
