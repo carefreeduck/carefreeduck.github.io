@@ -348,7 +348,7 @@ const data = {
         },
         {
           "Name": "Aesthetics",
-          "Description": "The physical appearance of your character, used in conflict versus constitution. If the opponent fails then they are attracted to your character and will react more positively towards you. The higher the difference in your aesthetics roll and their will power roll the larger the effect."
+          "Description": "The physical appearance of your character, used in conflict versus constitution. If the opponent fails then they are attracted to your character and will react more positively towards you. The higher the difference in your aesthetics roll and their constitution roll the larger the effect."
         },
         {
           "Name": "Senses",
