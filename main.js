@@ -398,6 +398,10 @@ function fillInitialItems() {
 
   $("#motiveDesc").val(trackedData.MotiveDesc);
   $("#motiveRes").val(trackedData.MotiveRes);
+  $("#secMotiveDesc").val(trackedData.SecMotiveDesc);
+  $("#secMotiveRes").val(trackedData.SecMotiveRes);
+  $("#sec2MotiveDesc").val(trackedData.Sec2MotiveDesc);
+  $("#sec2MotiveRes").val(trackedData.Sec2MotiveRes);
 
   $("#charBio").val(trackedData.CharBio);
   $("#charExtBio").val(trackedData.CharExtBio);
