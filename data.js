@@ -324,39 +324,39 @@ const data = {
       [
         {
           "Name": "Strength",
-          "Description": "Ability to lift, push, crush things due to your physical aptitude."
+          "Description": "Ability to lift, push, crush things due to your physical aptitude. This is typically used for the movement of objects or things rather than your body."
         },
         {
           "Name": "Stalker",
-          "Description": "Ability to be stealthy."
+          "Description": "Ability to be stealthy, quiet or move silently."
         },
         {
           "Name": "Combatant",
-          "Description": "Physical combat skill, with our without weapons."
+          "Description": "Physical combat skill, with our without weapons. This skill is used when engaging in combat with an opponent at close range."
         },
         {
           "Name": "Marksmen",
-          "Description": "Ranged combat skill, with weapons."
+          "Description": "Ranged combat skill, with weapons. This skill is typically used when trying to shoot something from far range. This could be in a combat or non combat situation, but it's restricted to the use of weapons."
         },
         {
           "Name": "Athlete",
-          "Description": "Ability to perform athletic feats."
+          "Description": "Ability to perform athletic feats. This is typically used for the movement of the body rather than objects. This is more guaged towards your body's ability to perform physically straining activities."
         },
         {
           "Name": "Acrobat",
-          "Description": "Ability to perform Acrobatic feats."
+          "Description": "Ability to perform Acrobatic feats. This is typically used for the movement of the body rahter than objects. It is more guaged towards your body's ability to perform physicially dexterous activites."
         },
         {
           "Name": "Aesthetics",
-          "Description": "The physical appearance of your character, used in conflict versus willpower. If the opponent fails then they are attracted to your character."
+          "Description": "The physical appearance of your character, used in conflict versus constitution. If the opponent fails then they are attracted to your character and will react more positively towards you. The higher the difference in your aesthetics roll and their will power roll the larger the effect."
         },
         {
           "Name": "Senses",
-          "Description": "Hearing, sight, taste, smell, touch. At super and incredible you can unlock senses beyond natural human function."
+          "Description": "This is your ability to use hearing, sight, taste, smell, and touch to detect things. At super and incredible you can unlock senses beyond natural human function."
         },
         {
           "Name": "Carnal Magician",
-          "Description": "Physical magic abilities."
+          "Description": "Physical magic abilities that affec the physical realm."
         },
         {
           "Name": "Constitution",
@@ -366,15 +366,15 @@ const data = {
       [
         {
           "Name": "Communicator",
-          "Description": "The skill of your character to communicate with other sentient beings."
+          "Description": "The skill of your character to communicate with other sentient beings. This involves negotiations, bartering, intimidation and diplmoacy."
         },
         {
           "Name": "Charisma",
-          "Description": "The impact your character has on other people in the same species."
+          "Description": "The impact your character has on other people in the same species.This skill is used when trying to get someone to like you more."
         },
         {
           "Name": "Animal Handler",
-          "Description": "The ability to interact with non sentient animals."
+          "Description": "The ability to interact with non sentient animals.This would include training and rudimentary communication."
         },
         {
           "Name": "Performer",
@@ -382,19 +382,19 @@ const data = {
         },
         {
           "Name": "Rogue",
-          "Description": "Ability to indulge in the cladestine areas of social society."
+          "Description": "Ability to indulge in the cladestine areas of social society, especially in the realms of deceit and mischief. It would be used for finding and fitting in with illegal functions of society."
         },
         {
           "Name": "Willpower",
-          "Description": "The ability to resist mental stress. This could be withstanding torture, interrogation, holding your breath, not laughing at the wrong time, holding in a sneeze etc etc."
+          "Description": "The ability to resist mental stress. This could be withstanding interrogation, charm, not laughing at the wrong time, resisting charm or being convinced to do something you don't want to do etc etc."
         },
         {
           "Name": "Intuition",
-          "Description": "The gut feeling of your character, the ability to read a room or situation through feeling."
+          "Description": "The gut feeling of your character, the ability to read a room or situation through feeling. Passing this skill will tell you the general aura of an environment, weather it's dangerous or safe, happy or sad, if you are being deceived or not. This does not give concrete answers though, only the general feel."
         },
         {
           "Name": "Empathy",
-          "Description": "How your character reads other people's emotions and experiences."
+          "Description": "How your character reads other people's emotions and experiences. Used for getting a read on someone, being able to tell if they are lying or not, how they feel towards you and their current mood."
         },
         {
           "Name": "Illusory Magician",
@@ -402,21 +402,21 @@ const data = {
         },
         {
           "Name": "Interrogator",
-          "Description": "Ability to retreive information from other sentient beings."
+          "Description": "Ability to retreive information from other sentient beings. To resist an interrogation you must roll will power. To lie during an interrogation you must roguery."
         },
         {
           "Name": "Leader",
-          "Description": "The skill used when motivating other people. If you use this in a conflict roll, you can use your difference in roll to skill to boost other members' of that conflict's roll."
+          "Description": "The skill used when motivating other people. It can be used to convince someone else to do somethign as well as improve people's performance of a skill. When used in a conflict resolution, use your damage to improve the roll of other members involved in the same conflict resolution. Each point in damage will reduce their roll by 1 and you can divide your damage between members any way you wish."
         }
       ],
       [
         {
           "Name": "Pilot",
-          "Description": "The skill used when operating machinery."
+          "Description": "The skill used when operating machinery. This includes cars, carts, chariots, spaceships, airplanes boats etc etc"
         },
         {
           "Name": "Scientist",
-          "Description": "The skill used in doing scientific research."
+          "Description": "The skill used in doing scientific research. This would include archeology, geology, physics, chemistry etc etc. This skill is used when deciphering raw information rather than documented."
         },
         {
           "Name": "Engineer",
@@ -424,19 +424,19 @@ const data = {
         },
         {
           "Name": "Strategist",
-          "Description": "The skill to creat a plan for you or other people or groups."
+          "Description": "The skill to creat a plan for you or other people or groups. If successful, then the conflict you are planning for will have a reduced difficulty rating. This will depend on the success of the strategy and the ruling of the GM."
         },
         {
           "Name": "Intellectual",
-          "Description": "The ability to think things through and learn new information as well as memory capabilities."
+          "Description": "The ability to think things through and learn new information as well as memory capabilities. This is used for learning and gathering information in the theoretical world."
         },
         {
           "Name": "Intelligencer",
-          "Description": "The skill used when doing espionage like activities."
+          "Description": "The skill used when doing espionage like activities. This is used for observing and gathering information in the physical world."
         },
         {
           "Name": "Detective",
-          "Description": "A skill used to find and link to gether clues in order to come to a conclusion."
+          "Description": "A skill used to find and link together clues in order to come to a conclusion. To unlock a clue you must complete a conflict resolution against the clue difficulty and HP."
         },
         {
           "Name": "Artisan",
@@ -448,7 +448,7 @@ const data = {
         },
         {
           "Name": "Scholar",
-          "Description": "Educational ability used in acquiring and using academic knowledge."
+          "Description": "Educational ability used in acquiring and using academic knowledge. This skill can be used to determine what type of information you possess and your ability to acquire information through scholarly methods."
         },
         {
           "Name": "Survivalist",
